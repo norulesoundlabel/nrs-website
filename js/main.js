@@ -24,7 +24,7 @@
   if ($("#heroTitle")) $("#heroTitle").textContent = D.label.name || "NO RULES SOUND";
   if ($("#heroSub")) $("#heroSub").textContent = D.label.subtagline || "";
   if ($("#aboutText")) $("#aboutText").textContent = D.label.about || "";
-  document.title = (D.label.name || "NO RULES SOUND") + " — Hard Dance / Hardcore Collective";
+  document.title = (D.label.name || "NO RULES SOUND") + " — Hard Dance / Hard Techno / Industrial Collective";
 
   /* ---------- SOCIAL PILLS (about + footer) ---------- */
   function buildSocialRow(container){
@@ -132,39 +132,27 @@
       .catch(() => { /* silenzioso: resta la foto già in data.js */ });
   });
 
-  /* ---------- RELEASES ---------- */
-  const releasesList = $("#releasesList");
-  if(releasesList && Array.isArray(D.releases)){
-    D.releases.forEach(rel => {
-      const row = el("div", "release-row");
-      row.appendChild(el("span", "release-row__cat mono", escapeHtml(rel.catalog || "")));
-
-      const mid = el("div", "");
-      mid.appendChild(el("p", "release-row__title", escapeHtml(rel.title)));
-      mid.appendChild(el("p", "release-row__artist", escapeHtml(rel.artist)));
-      row.appendChild(mid);
-
-      row.appendChild(el("span", "release-row__date mono", escapeHtml(rel.date || "")));
-
-      if(rel.embedUrl){
-        const wrap = el("div", "release-embed");
-        const iframe = document.createElement("iframe");
-        iframe.loading = "lazy";
-        iframe.height = "120";
-        iframe.allow = "autoplay";
-        iframe.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(rel.embedUrl) +
-          "&color=%23ff6a13&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false";
-        wrap.appendChild(iframe);
-        row.appendChild(wrap);
-      } else if(rel.link){
-        row.style.cursor = "pointer";
-        row.addEventListener("click", () => window.open(rel.link, "_blank", "noopener"));
-      }
-
-      releasesList.appendChild(row);
-    });
-    if(!D.releases.length){
-      releasesList.appendChild(el("p", "split__text", "Nessuna uscita ancora inserita: aggiungile in js/data.js → releases."));
+  /* ---------- RELEASES (player live, sempre aggiornato da SoundCloud) ----------
+     Non legge più js/data.js: mostra sempre i brani reali più recenti
+     caricati sull'account SoundCloud della label (socials.soundcloud),
+     tramite il player "stream" ufficiale di SoundCloud. Zero manutenzione:
+     appena caricate un brano nuovo su SoundCloud, compare qui da solo. */
+  const releasesWrap = $("#releasesList");
+  if(releasesWrap){
+    const labelSoundcloud = D.socials && D.socials.soundcloud;
+    if(labelSoundcloud){
+      const tracksUrl = labelSoundcloud.replace(/\/+$/, "") + "/tracks";
+      const iframe = document.createElement("iframe");
+      iframe.loading = "lazy";
+      iframe.width = "100%";
+      iframe.height = "450";
+      iframe.style.border = "0";
+      iframe.allow = "autoplay";
+      iframe.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(tracksUrl) +
+        "&color=%23ff6a13&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false";
+      releasesWrap.appendChild(iframe);
+    } else {
+      releasesWrap.appendChild(el("p", "split__text", "Account SoundCloud non collegato: aggiungi il link in js/data.js → socials.soundcloud."));
     }
   }
 
@@ -197,13 +185,16 @@
     }
   }
 
-  /* ---------- PRE-SAVE ---------- */
+  /* ---------- PRE-SAVE (visibile da solo finché la data di uscita non è passata) ---------- */
   const presaveBox = $("#presaveBox");
   if(presaveBox){
-    if(D.presave && D.presave.active && D.presave.url){
-      presaveBox.appendChild(el("p", "presave-box__track mono", escapeHtml(D.presave.trackTitle || "")));
+    const p = D.presave || {};
+    const releaseDate = p.releaseDate ? new Date(p.releaseDate + "T23:59:59") : null;
+    const isUpcoming = p.url && releaseDate && !isNaN(releaseDate) && releaseDate.getTime() >= Date.now();
+    if(isUpcoming){
+      presaveBox.appendChild(el("p", "presave-box__track mono", escapeHtml(p.trackTitle || "")));
       const a = el("a", "btn btn--primary btn--full", "Pre-save ora");
-      a.href = D.presave.url; a.target = "_blank"; a.rel = "noopener";
+      a.href = p.url; a.target = "_blank"; a.rel = "noopener";
       presaveBox.appendChild(a);
     } else {
       presaveBox.appendChild(el("p", "presave-box__empty", "Nessuna uscita in pre-save al momento. Torna presto — o seguici sui social per essere avvisato."));
