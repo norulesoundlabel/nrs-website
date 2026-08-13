@@ -12,7 +12,7 @@
    - Salva il file e ricarica la pagina per vedere le modifiche.
    ============================================================ */
 
-const NRS_DATA = {
+window.NRS_DATA = {
 
   /* ---------- IDENTITÀ / HERO ---------- */
   label: {
