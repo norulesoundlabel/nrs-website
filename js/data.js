@@ -18,11 +18,11 @@ window.NRS_DATA = {
   label: {
     name: "NO RULES SOUND",
     shortName: "NRS",
-    tagline: "Italian hard dance, hardcore & bounce collective.",
+    tagline: "Italian hard dance, hard techno & industrial collective.",
     subtagline: "Nessuna regola. Solo BPM alti e nessun compromesso.",
     location: "Italia",
     // Testo breve "chi siamo" mostrato nella sezione About
-    about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dalle leggendarie \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo hard techno, schranz, hardcore, bounce e neo rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica."
+    about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dalle leggendarie \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo hard techno, industrial, schranz, bounce e neo rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica."
   },
 
   /* ---------- CONTATTI ---------- */
@@ -69,11 +69,17 @@ window.NRS_DATA = {
      - creare il pre-save con un tool gratuito (es. feature.fm free, o
        il pre-save integrato del vostro distributore, se ne avete uno)
      - incollare qui il link risultante: basta un normale link, si apre
-       in una nuova scheda, nessun codice da mantenere sul sito. */
+       in una nuova scheda, nessun codice da mantenere sul sito.
+
+     "releaseDate": mettete la data di uscita del brano (formato "AAAA-MM-GG").
+     Il box "Pre-save" resta visibile automaticamente finché quella data non è
+     passata — appena il brano esce, sparisce da solo, senza dover disattivare
+     nulla a mano. Per il prossimo pre-save, sostituite semplicemente questi
+     3 valori con quelli della prossima uscita. */
   presave: {
-    active: false,            // metti true quando avete un'uscita in pre-save
-    trackTitle: "",           // es. "NRS015 — Titolo brano"
-    url: ""                   // link al pre-save (feature.fm, distributore, ecc.)
+    trackTitle: "",            // es. "NRS015 — Titolo brano"
+    url: "",                   // link al pre-save (feature.fm, distributore, ecc.)
+    releaseDate: ""            // es. "2026-09-05" — lasciate vuoto per nascondere il box
   },
 
   // Embed di una playlist Spotify (aperta, pubblica). Per ottenerlo:
@@ -175,46 +181,10 @@ window.NRS_DATA = {
   ],
 
   /* ---------- ULTIME USCITE ----------
-     Aggiungi qui le vostre release più recenti in cima alla lista.
-     "embedUrl": se volete il player SoundCloud incorporato, prendete
-     il link della traccia (es. https://soundcloud.com/no-rules-sound-label/nome-traccia)
-     e incollatelo qui: il player si genera da solo, non serve altro codice.
-     Se lasciate embedUrl vuoto, la release si vede lo stesso come testo + link. */
-  releases: [
-    {
-      catalog: "NRS001",
-      title: "Welcome to No Rules",
-      artist: "Sandro Cardio",
-      date: "2024",
-      embedUrl: "https://soundcloud.com/no-rules-sound-label/welcome-to-no-rules",
-      link: "https://soundcloud.com/no-rules-sound-label/welcome-to-no-rules"
-    },
-    {
-      catalog: "NRS010",
-      title: "Go Insane",
-      artist: "TSK Phønič",
-      date: "2025",
-      embedUrl: "https://soundcloud.com/no-rules-sound-label/tsk-phonic-go-insane",
-      link: "https://soundcloud.com/no-rules-sound-label/tsk-phonic-go-insane"
-    },
-    {
-      catalog: "NRS011",
-      title: "Schranzfunk",
-      artist: "TSK Phønič",
-      date: "2025",
-      embedUrl: "https://soundcloud.com/no-rules-sound-label/free-dl-schranzfunk-tsk-phonic",
-      link: "https://soundcloud.com/no-rules-sound-label/free-dl-schranzfunk-tsk-phonic"
-    }
-    /* Aggiungi qui le prossime uscite, stesso formato:
-    {
-      catalog: "NRS0XX",
-      title: "Titolo",
-      artist: "Nome artista",
-      date: "2026",
-      embedUrl: "https://soundcloud.com/...",
-      link: "https://soundcloud.com/..."
-    },
-    */
-  ]
+     Non c'è più nulla da mantenere qui: la sezione "Uscite" del sito mostra
+     in automatico, sempre, i brani reali più recenti caricati sul vostro
+     account SoundCloud (preso da socials.soundcloud qui sopra). Aggiungete
+     un brano su SoundCloud → compare da solo sul sito, senza toccare
+     questo file. */
 
 };
