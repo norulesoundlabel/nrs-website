@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NO RULES SOUND — Hard Dance / Hard Techno / Industrial Collective</title>
-<meta name="description" content="No Rules Sound — collettivo ed etichetta hard dance / hard techno / industrial / neo rave. Roster artisti, uscite, playlist e contatti.">
+<meta name="description" content="No Rules Sound — collettivo ed etichetta hard dance / hard techno / industrial / bounce. Roster artisti, uscite, playlist e contatti.">
 
 <!-- Open Graph -->
 <meta property="og:title" content="NO RULES SOUND">
-<meta property="og:description" content="Italian hard dance, hard techno & industrial collective.">
+<meta property="og:description" content="Italian hard dance, hard techno, industrial &amp; bounce collective.">
 <meta property="og:type" content="website">
 
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,16 +22,21 @@
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <a href="#top" class="nav__logo">NRS</a>
-  <button class="nav__toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
+  <button class="nav__toggle" id="navToggle" aria-label="Apri menu" data-i18n-aria="menuOpen" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
   <nav class="nav__links" id="navLinks">
     <a href="#roster">Roster</a>
-    <a href="#uscite">Uscite</a>
+    <a href="#uscite" data-i18n="navReleases">Uscite</a>
     <a href="#playlist">Playlist</a>
     <a href="#newsletter">Newsletter</a>
-    <a href="#contatti">Contatti</a>
+    <a href="#contatti" data-i18n="navContacts">Contatti</a>
   </nav>
+  <div class="lang-switch" aria-label="Lingua" data-i18n-aria="languageLabel">
+    <button type="button" data-lang="it" aria-pressed="true">IT</button>
+    <span aria-hidden="true">/</span>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
 </header>
 
 <!-- ============ HERO ============ -->
@@ -42,8 +47,8 @@
     <h1 class="hero__title" id="heroTitle" data-text="NO RULES SOUND">NO RULES SOUND</h1>
     <p class="hero__sub" id="heroSub">Nessuna regola. Solo BPM alti e nessun compromesso.</p>
     <div class="hero__cta">
-      <a href="#roster" class="btn btn--primary">Scopri il roster</a>
-      <a href="#uscite" class="btn btn--ghost">Ultime uscite</a>
+      <a href="#roster" class="btn btn--primary" data-i18n="heroRoster">Scopri il roster</a>
+      <a href="#uscite" class="btn btn--ghost" data-i18n="heroReleases">Ultime uscite</a>
     </div>
   </div>
   <div class="hero__stripe hero__stripe--bottom" aria-hidden="true"></div>
@@ -61,7 +66,7 @@
 <section class="section" id="roster">
   <div class="section__head">
     <p class="eyebrow mono">Roster</p>
-    <h2 class="section__title">Gli artisti</h2>
+    <h2 class="section__title" data-i18n="artistsTitle">Gli artisti</h2>
   </div>
   <div class="roster-grid" id="rosterGrid"><!-- generato via JS --></div>
 </section>
@@ -71,8 +76,8 @@
 <!-- ============ USCITE ============ -->
 <section class="section" id="uscite">
   <div class="section__head">
-    <p class="eyebrow mono">Catalogo</p>
-    <h2 class="section__title">Ultime uscite</h2>
+    <p class="eyebrow mono" data-i18n="catalogLabel">Catalogo</p>
+    <h2 class="section__title" data-i18n="releasesTitle">Ultime uscite</h2>
   </div>
   <div class="releases" id="releasesList"><!-- generato via JS --></div>
 </section>
@@ -82,13 +87,13 @@
 <!-- ============ PLAYLIST + PRESAVE ============ -->
 <section class="section split" id="playlist">
   <div class="split__col">
-    <p class="eyebrow mono">Ascolta</p>
+    <p class="eyebrow mono" data-i18n="listenLabel">Ascolta</p>
     <h2 class="section__title section__title--sm">Playlist Spotify</h2>
-    <p class="split__text">Tutte le tracce NRS in un unico posto. Seguila per non perdere nessuna uscita.</p>
+    <p class="split__text" data-i18n="playlistText">Tutte le tracce NRS in un unico posto. Seguila per non perdere nessuna uscita.</p>
     <div id="spotifyEmbedWrap"><!-- generato via JS --></div>
   </div>
   <div class="split__col">
-    <p class="eyebrow mono">In arrivo</p>
+    <p class="eyebrow mono" data-i18n="comingLabel">In arrivo</p>
     <h2 class="section__title section__title--sm">Pre-save</h2>
     <div id="presaveBox" class="presave-box"><!-- generato via JS --></div>
   </div>
@@ -99,9 +104,9 @@
 <!-- ============ NEWSLETTER ============ -->
 <section class="section newsletter" id="newsletter">
   <div class="hero__stripe" aria-hidden="true"></div>
-  <p class="eyebrow mono">Resta connesso</p>
+  <p class="eyebrow mono" data-i18n="stayConnected">Resta connesso</p>
   <h2 class="section__title">Newsletter</h2>
-  <p class="split__text">Nuove uscite, date live e drop in anteprima, dritti in inbox. Niente spam, promesso — no rules, ma questa la rispettiamo.</p>
+  <p class="split__text" data-i18n="newsletterText">Nuove uscite, date live e drop in anteprima, dritti in inbox. Niente spam, promesso — no rules, ma questa la rispettiamo.</p>
   <div id="newsletterFormWrap"><!-- generato via JS --></div>
 </section>
 
@@ -110,21 +115,21 @@
   <div class="footer__top">
     <div>
       <p class="footer__logo">NRS</p>
-      <p class="footer__tag">No Rules Sound — Italian hard dance, hard techno & industrial collective.</p>
+      <p class="footer__tag" data-i18n="footerTag">No Rules Sound — Italian hard dance, hard techno, industrial &amp; bounce collective.</p>
     </div>
     <div class="footer__contacts">
-      <p class="mono footer__label">Contatti</p>
+      <p class="mono footer__label" data-i18n="navContacts">Contatti</p>
       <p id="footerEmail">—</p>
       <p class="mono footer__label">Booking</p>
       <p id="footerBooking">—</p>
     </div>
     <div class="footer__socials">
-      <p class="mono footer__label">Seguici</p>
+      <p class="mono footer__label" data-i18n="followLabel">Seguici</p>
       <div id="footerSocialRow" class="about__socials"></div>
     </div>
   </div>
   <div class="footer__bottom">
-    <span>© <span id="year"></span> No Rules Sound. Tutti i diritti riservati.</span>
+    <span>© <span id="year"></span> No Rules Sound. <span data-i18n="rights">Tutti i diritti riservati.</span></span>
   </div>
 </footer>
 
