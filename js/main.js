@@ -19,6 +19,44 @@
     "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
   }[c]));
 
+  const COPY = {
+    it: {
+      menuOpen: "Apri menu", languageLabel: "Lingua",
+      navReleases: "Uscite", navContacts: "Contatti",
+      heroRoster: "Scopri il roster", heroReleases: "Ultime uscite",
+      artistsTitle: "Gli artisti", catalogLabel: "Catalogo", releasesTitle: "Ultime uscite",
+      listenLabel: "Ascolta", playlistText: "Tutte le tracce NRS in un unico posto. Seguila per non perdere nessuna uscita.",
+      comingLabel: "In arrivo", stayConnected: "Resta connesso",
+      newsletterText: "Nuove uscite, date live e drop in anteprima, dritti in inbox. Niente spam, promesso — no rules, ma questa la rispettiamo.",
+      footerTag: "No Rules Sound — Italian hard dance, hard techno, industrial & bounce collective.",
+      followLabel: "Seguici", rights: "Tutti i diritti riservati.",
+      rosterNumber: "ROSTER Nº", booking: "Booking", presaveNow: "Pre-save ora",
+      noPresave: "Nessuna uscita in pre-save al momento. Torna presto — o seguici sui social per essere avvisato.",
+      subscribe: "Iscriviti alla newsletter",
+      noSoundcloud: "Account SoundCloud non collegato: aggiungi il link in js/data.js → socials.soundcloud.",
+      noSpotify: "Playlist non ancora collegata: aggiungi il link in js/data.js → socials.spotify (o spotifyPlaylistEmbedUrl per una playlist specifica)."
+    },
+    en: {
+      menuOpen: "Open menu", languageLabel: "Language",
+      navReleases: "Releases", navContacts: "Contact",
+      heroRoster: "Discover the roster", heroReleases: "Latest releases",
+      artistsTitle: "The artists", catalogLabel: "Catalogue", releasesTitle: "Latest releases",
+      listenLabel: "Listen", playlistText: "All NRS tracks in one place. Follow the playlist and never miss a release.",
+      comingLabel: "Coming soon", stayConnected: "Stay connected",
+      newsletterText: "New releases, live dates and early drops, straight to your inbox. No spam, promise — no rules, but we respect this one.",
+      footerTag: "No Rules Sound — Italian hard dance, hard techno, industrial & bounce collective.",
+      followLabel: "Follow us", rights: "All rights reserved.",
+      rosterNumber: "ROSTER NO.", booking: "Booking", presaveNow: "Pre-save now",
+      noPresave: "There are no releases available for pre-save right now. Check back soon — or follow us on social media for updates.",
+      subscribe: "Join the newsletter",
+      noSoundcloud: "SoundCloud is not connected yet: add the link in js/data.js → socials.soundcloud.",
+      noSpotify: "The playlist is not connected yet: add the link in js/data.js → socials.spotify (or use spotifyPlaylistEmbedUrl for a specific playlist)."
+    }
+  };
+  const requestedLang = new URLSearchParams(location.search).get("lang");
+  let currentLang = requestedLang === "en" ? "en" : "it";
+  const t = key => COPY[currentLang][key] || COPY.it[key] || key;
+
   /* ---------- HERO / ABOUT ---------- */
   if ($("#heroEyebrow")) $("#heroEyebrow").textContent = D.label.tagline || "";
   if ($("#heroTitle")) $("#heroTitle").textContent = D.label.name || "NO RULES SOUND";
@@ -76,13 +114,17 @@
       } else {
         top.appendChild(monogram);
       }
-      const idTag = el("span", "artist-card__id mono", "ROSTER Nº" + escapeHtml(artist.catalogNo || "—"));
+      const idTag = el("span", "artist-card__id mono");
+      idTag.dataset.catalogNo = artist.catalogNo || "—";
       top.appendChild(idTag);
 
       card.appendChild(top);
       card.appendChild(el("h3", "artist-card__name", escapeHtml(artist.name)));
       card.appendChild(el("p", "artist-card__genre mono", escapeHtml(artist.genre)));
-      card.appendChild(el("p", "artist-card__bio", escapeHtml(artist.bio)));
+      const bio = el("p", "artist-card__bio", escapeHtml(artist.bio));
+      bio.dataset.it = artist.bio || "";
+      bio.dataset.en = artist.bioEn || artist.bio || "";
+      card.appendChild(bio);
 
       const links = el("div", "artist-card__links");
       if(artist.soundcloud){
@@ -99,6 +141,7 @@
       }
       if(D.contact && D.contact.bookingEmail){
         const a = el("a", "", "Booking"); a.href = "mailto:" + D.contact.bookingEmail;
+        a.dataset.copyKey = "booking";
         links.appendChild(a);
       }
       if(links.children.length) card.appendChild(links);
@@ -152,7 +195,9 @@
         "&color=%23ff6a13&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false";
       releasesWrap.appendChild(iframe);
     } else {
-      releasesWrap.appendChild(el("p", "split__text", "Account SoundCloud non collegato: aggiungi il link in js/data.js → socials.soundcloud."));
+      const message = el("p", "split__text");
+      message.dataset.copyKey = "noSoundcloud";
+      releasesWrap.appendChild(message);
     }
   }
 
@@ -181,7 +226,9 @@
       iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
       spotifyWrap.appendChild(iframe);
     } else {
-      spotifyWrap.appendChild(el("p", "split__text", "Playlist non ancora collegata: aggiungi il link in js/data.js → socials.spotify (o spotifyPlaylistEmbedUrl per una playlist specifica)."));
+      const message = el("p", "split__text");
+      message.dataset.copyKey = "noSpotify";
+      spotifyWrap.appendChild(message);
     }
   }
 
@@ -193,11 +240,14 @@
     const isUpcoming = p.url && releaseDate && !isNaN(releaseDate) && releaseDate.getTime() >= Date.now();
     if(isUpcoming){
       presaveBox.appendChild(el("p", "presave-box__track mono", escapeHtml(p.trackTitle || "")));
-      const a = el("a", "btn btn--primary btn--full", "Pre-save ora");
+      const a = el("a", "btn btn--primary btn--full");
+      a.dataset.copyKey = "presaveNow";
       a.href = p.url; a.target = "_blank"; a.rel = "noopener";
       presaveBox.appendChild(a);
     } else {
-      presaveBox.appendChild(el("p", "presave-box__empty", "Nessuna uscita in pre-save al momento. Torna presto — o seguici sui social per essere avvisato."));
+      const message = el("p", "presave-box__empty");
+      message.dataset.copyKey = "noPresave";
+      presaveBox.appendChild(message);
     }
   }
 
@@ -220,7 +270,8 @@
       iframe.style.marginTop = "1.6rem";
       nlWrap.appendChild(iframe);
     } else if(nl.fallbackUrl){
-      const a = el("a", "btn btn--primary", "Iscriviti alla newsletter");
+      const a = el("a", "btn btn--primary");
+      a.dataset.copyKey = "subscribe";
       a.href = nl.fallbackUrl; a.target = "_blank"; a.rel = "noopener";
       a.style.marginTop = "1.6rem";
       a.style.display = "inline-block";
@@ -239,6 +290,55 @@
   if($("#footerEmail")) $("#footerEmail").textContent = (D.contact && D.contact.email) || "—";
   if($("#footerBooking")) $("#footerBooking").textContent = (D.contact && D.contact.bookingEmail) || "—";
   if($("#year")) $("#year").textContent = new Date().getFullYear();
+
+  /* ---------- LINGUA IT / EN ---------- */
+  function applyLanguage(lang, updateUrl){
+    currentLang = lang === "en" ? "en" : "it";
+    document.documentElement.lang = currentLang;
+
+    document.querySelectorAll("[data-i18n]").forEach(node => {
+      node.textContent = t(node.dataset.i18n);
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach(node => {
+      node.setAttribute("aria-label", t(node.dataset.i18nAria));
+    });
+    document.querySelectorAll("[data-copy-key]").forEach(node => {
+      node.textContent = t(node.dataset.copyKey);
+    });
+    document.querySelectorAll("[data-lang]").forEach(button => {
+      button.setAttribute("aria-pressed", button.dataset.lang === currentLang ? "true" : "false");
+    });
+    document.querySelectorAll(".artist-card__id[data-catalog-no]").forEach(node => {
+      node.textContent = t("rosterNumber") + node.dataset.catalogNo;
+    });
+    document.querySelectorAll(".artist-card__bio").forEach(node => {
+      node.textContent = node.dataset[currentLang] || node.dataset.it || "";
+    });
+
+    if($("#heroEyebrow")) $("#heroEyebrow").textContent = currentLang === "en" ? (D.label.taglineEn || D.label.tagline) : D.label.tagline;
+    if($("#heroSub")) $("#heroSub").textContent = currentLang === "en" ? (D.label.subtaglineEn || D.label.subtagline) : D.label.subtagline;
+    if($("#aboutText")) $("#aboutText").textContent = currentLang === "en" ? (D.label.aboutEn || D.label.about) : D.label.about;
+
+    const description = currentLang === "en"
+      ? "No Rules Sound — Italian hard dance, hard techno, industrial and bounce collective and label. Artists, releases, playlist and contacts."
+      : "No Rules Sound — collettivo ed etichetta hard dance, hard techno, industrial e bounce. Artisti, uscite, playlist e contatti.";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if(metaDescription) metaDescription.content = description;
+    if(ogDescription) ogDescription.content = description;
+
+    if(updateUrl){
+      const url = new URL(location.href);
+      if(currentLang === "en") url.searchParams.set("lang", "en");
+      else url.searchParams.delete("lang");
+      history.replaceState({}, "", url);
+    }
+  }
+
+  document.querySelectorAll("[data-lang]").forEach(button => {
+    button.addEventListener("click", () => applyLanguage(button.dataset.lang, true));
+  });
+  applyLanguage(currentLang, false);
 
   /* ---------- NAV MOBILE TOGGLE ---------- */
   const navToggle = $("#navToggle");
