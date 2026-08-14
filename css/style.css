@@ -12,12 +12,20 @@
   --red:           #FF2A2A;
   --wire:          #34302a;
 
-  --font-display:  'Anton', 'Arial Narrow', sans-serif;
+  --font-display:  'Chopsic', 'Arial Narrow', sans-serif;
   --font-mono:     'JetBrains Mono', ui-monospace, monospace;
   --font-body:      'Work Sans', system-ui, sans-serif;
 
   --container: 1180px;
   --gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+@font-face{
+  font-family: 'Chopsic';
+  src: url('../assets/fonts/Chopsic.otf') format('opentype');
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
 }
 
 *, *::before, *::after{ box-sizing: border-box; }
@@ -98,6 +106,19 @@ p{ margin:0; }
 .nav__links{
   display:flex; gap: clamp(1rem, 2.4vw, 2.2rem);
 }
+.lang-switch{
+  display:flex; align-items:center; gap:0.3rem;
+  margin-left: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--paper-dim);
+}
+.lang-switch button{
+  appearance:none; border:0; background:none; color:inherit; cursor:pointer;
+  font:inherit; padding:0.3rem 0.2rem;
+}
+.lang-switch button[aria-pressed="true"]{ color:var(--amber); }
+.lang-switch button:focus-visible{ outline:2px solid var(--amber); outline-offset:2px; }
 .nav__links a{
   text-decoration:none;
   font-family: var(--font-mono);
@@ -121,6 +142,7 @@ p{ margin:0; }
 .nav__toggle span{ width:22px; height:2px; background: var(--paper); display:block; }
 
 @media (max-width: 720px){
+  .nav{ flex-wrap:wrap; }
   .nav__toggle{ display:flex; }
   .nav__links{
     position:absolute; top:100%; left:0; right:0;
@@ -135,6 +157,9 @@ p{ margin:0; }
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--wire);
   }
+  .lang-switch{ order:2; margin-left:auto; margin-right:0.8rem; }
+  .nav__toggle{ order:3; }
+  .nav__logo{ order:1; }
 }
 
 /* ============================================================
