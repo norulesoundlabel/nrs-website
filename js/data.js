@@ -19,15 +19,18 @@ window.NRS_DATA = {
     name: "NO RULES SOUND",
     shortName: "NRS",
     tagline: "Italian hard dance, hard techno & industrial collective.",
+    taglineEn: "Italian hard dance, hard techno & industrial collective.",
     subtagline: "Nessuna regola. Solo BPM alti e nessun compromesso.",
+    subtaglineEn: "No rules. Just high BPM and no compromises.",
     location: "Italia",
     // Testo breve "chi siamo" mostrato nella sezione About
-    about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dalle leggendarie \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo hard techno, industrial, schranz, bounce e neo rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica."
+    about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dalle leggendarie \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo hard techno, industrial, schranz, bounce e neo rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica.",
+    aboutEn: "No Rules Sound was born from the energy of car parks turned into dance floors: from legendary underground afterparties, where the only goals were to dance, connect and build a community, the collective grew into what it is today. Through NRS Records we release hard techno, industrial, schranz, bounce and neo rave, with one rule: no rules. We believe in a safe, inclusive and unfiltered space where anyone can express themselves freely through music."
   },
 
   /* ---------- CONTATTI ---------- */
   contact: {
-    email: "info@norulessound.it", // metti qui la vostra casella su register.it
+    email: "info@norulesound.com",
     bookingEmail: "nrsbookingofficial@gmail.com", // unica casella booking, usata anche in ogni scheda artista
   },
 
@@ -103,6 +106,7 @@ window.NRS_DATA = {
       name: "TMPST",
       genre: "Hard Techno",
       bio: "TMPST è DJ e producer hard techno, co-fondatore di No Rules Sound: la sua firma è nel DNA stesso del collettivo.",
+      bioEn: "TMPST is a hard techno DJ and producer and a co-founder of No Rules Sound: his signature is embedded in the collective's DNA.",
       image: "https://i1.sndcdn.com/avatars-xXTGCTICxzG0elBA-pxoncQ-t500x500.jpg",
       soundcloud: "https://soundcloud.com/tmpst_nrs",
       instagram: "https://www.instagram.com/tmpst.music_nrs/",
@@ -113,6 +117,7 @@ window.NRS_DATA = {
       name: "FAE NRS",
       genre: "Oriental Hard Techno",
       bio: "FAE NRS porta nel roster NRS il suo \"Sahara Sound\": hard techno che intreccia scale e atmosfere orientali con groove martellante, un'identità sonora unica nel collettivo.",
+      bioEn: "FAE NRS brings his \"Sahara Sound\" to the NRS roster: hard techno weaving Eastern scales and atmospheres into a pounding groove, creating a unique identity within the collective.",
       image: "https://i1.sndcdn.com/avatars-hzpHsfekEximbfhF-IiYsRA-t500x500.jpg",
       soundcloud: "https://soundcloud.com/faenrs",
       instagram: "https://www.instagram.com/fae.music_nrs/",
@@ -123,6 +128,7 @@ window.NRS_DATA = {
       name: "HVNTER",
       genre: "Schranz",
       bio: "HVNTER, da Firenze, è lo \"Schranz Daddy\" del roster: groove serrato, ipnotico e senza sconti, pensato per colpire in pista dall'inizio alla fine del set.",
+      bioEn: "Florence-based HVNTER is the roster's \"Schranz Daddy\": tight, hypnotic and uncompromising grooves built to hit the dance floor from the beginning to the end of every set.",
       image: "https://i1.sndcdn.com/avatars-VxWQAuNoy8jTtzzJ-reKOIg-t500x500.jpg",
       soundcloud: "https://soundcloud.com/hvnternrs",
       instagram: "https://www.instagram.com/hvnter.music_nrs/",
@@ -133,6 +139,7 @@ window.NRS_DATA = {
       name: "TSK Phønič",
       genre: "Hardtechno / Industrial / Raw",
       bio: "TSK Phønič è una delle voci più riconoscibili del roster NRS: hardtechno sporco, industrial e raw, prodotto per colpire in pista.",
+      bioEn: "TSK Phønič is one of the most distinctive voices on the NRS roster: dirty hard techno, industrial and raw, produced to hit hard on the dance floor.",
       image: "https://i1.sndcdn.com/avatars-CzCHkcN17xmbutgl-4ycHMQ-t500x500.jpg",
       soundcloud: "https://soundcloud.com/tsk_phonic",
       instagram: "https://www.instagram.com/tsk_phonic/",
@@ -143,6 +150,7 @@ window.NRS_DATA = {
       name: "RandeX",
       genre: "Hardtechno",
       bio: "RandeX, DJ e producer hardtechno di base a Firenze, è tra i membri fondatori di No Rules Sound.",
+      bioEn: "RandeX is a Florence-based hard techno DJ and producer and one of the founding members of No Rules Sound.",
       image: "https://i1.sndcdn.com/avatars-dh1AhdgQDifAFVV5-fWlryA-t500x500.jpg",
       soundcloud: "https://soundcloud.com/randex_nrs",
       instagram: "https://www.instagram.com/randex.music_nrs/",
@@ -153,6 +161,7 @@ window.NRS_DATA = {
       name: "Danny Candy",
       genre: "Bounce Techno",
       bio: "Danny Candy è il re del leccalecca saltellante del roster: bounce techno giocoso e irresistibile, pensato per far rimbalzare la pista dal primo all'ultimo beat.",
+      bioEn: "Danny Candy is the roster's bouncing-lollipop king: playful, irresistible bounce techno built to keep the dance floor moving from the first beat to the last.",
       image: "https://i1.sndcdn.com/avatars-TcastgrW1b3GYVjh-Vfgiag-t500x500.jpg",
       soundcloud: "https://soundcloud.com/dannycandy",
       instagram: "https://www.instagram.com/dannycandy_nrs/",
@@ -163,6 +172,7 @@ window.NRS_DATA = {
       name: "Sandro Cardio",
       genre: "Hard Techno",
       bio: "Sandro Cardio, producer e DJ italiano, ha aperto il catalogo NRS Records nel 2024 con \"Welcome to No Rules\" (NRS001). Da allora ha collaborato con nomi come Jovynn, Lorenzø, Gianma Bln, Daisy Guglielmi, Cris Way e Alysh, superando i 6 milioni di ascolti e ricevendo supporto da artisti come Nico Moreno, Steve Aoki, Dimitri Vegas & Like Mike, I Hate Models e Fatima Hajji.",
+      bioEn: "Italian producer and DJ Sandro Cardio opened the NRS Records catalogue in 2024 with \"Welcome to No Rules\" (NRS001). Since then, he has collaborated with artists including Jovynn, Lorenzø, Gianma Bln, Daisy Guglielmi, Cris Way and Alysh, surpassing 6 million streams and earning support from Nico Moreno, Steve Aoki, Dimitri Vegas & Like Mike, I Hate Models and Fatima Hajji.",
       image: "https://i1.sndcdn.com/avatars-ziymGvJyaKsmgxzX-4n5yHQ-t500x500.jpg",
       soundcloud: "https://soundcloud.com/sandrocardio",
       instagram: "https://www.instagram.com/sandro.cardio/",
@@ -173,6 +183,7 @@ window.NRS_DATA = {
       name: "KØDA",
       genre: "Hard Bounce",
       bio: "KØDA, DJ e producer argentino, porta nel roster NRS il lato più \"bounce\" e dancefloor del collettivo — energia diretta e groove pensato per far saltare la pista.",
+      bioEn: "Argentinian DJ and producer KØDA brings the collective's most bounce-driven, dance-floor-focused side to the NRS roster — direct energy and grooves made to move the crowd.",
       image: "https://i1.sndcdn.com/avatars-TCzC1hAG1OI9pwez-sIGk4A-t500x500.jpg",
       soundcloud: "https://soundcloud.com/89koda",
       instagram: "https://www.instagram.com/89koda/",
