@@ -139,12 +139,17 @@
         const a = el("a", "", "Beatport"); a.href = artist.beatport; a.target="_blank"; a.rel="noopener";
         links.appendChild(a);
       }
-      if(D.contact && D.contact.bookingEmail){
-        const a = el("a", "", "Booking"); a.href = "mailto:" + D.contact.bookingEmail;
-        a.dataset.copyKey = "booking";
+      if(artist.spotify){
+        const a = el("a", "", "Spotify"); a.href = artist.spotify; a.target="_blank"; a.rel="noopener";
         links.appendChild(a);
       }
       if(links.children.length) card.appendChild(links);
+
+      if(artist.bookable && D.contact && D.contact.bookingEmail){
+        const booking = el("a", "artist-card__booking", "BOOK NOW");
+        booking.href = "mailto:" + D.contact.bookingEmail + "?subject=" + encodeURIComponent("Booking request — " + (artist.name || "NRS artist"));
+        card.appendChild(booking);
+      }
 
       rosterGrid.appendChild(card);
     });
