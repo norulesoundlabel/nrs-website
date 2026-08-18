@@ -197,19 +197,7 @@ window.NRS_DATA = {
       instagram: "https://www.instagram.com/89koda/",
       beatport: "https://www.beatport.com/artist/koda/98128"
     },
-    {
-      catalogNo: "09",
-      name: "SELICATO",
-      bookable: false,
-      genre: "Bounce / Hardbounce",
-      bio: "SELICATO è il progetto di Giuseppe Selicato, DJ e producer italiano nato a Monopoli. Attivo dal 2019, costruisce set ad alta intensità tra bounce, hardbounce e sonorità hard, con un approccio diretto e istintivo al dancefloor. Dalla scena italiana ai club europei, porta un’energia precisa, fisica e senza compromessi.",
-      bioEn: "SELICATO is the project of Italian DJ and producer Giuseppe Selicato. Active since 2019, he delivers high-intensity sets shaped by bounce, hardbounce and hard sounds, with a direct and instinctive feel for the dancefloor. From the Italian scene to European clubs, he brings focused, physical and uncompromising energy.",
-      image: "",
-      soundcloud: "https://soundcloud.com/selicato",
-      spotify: "https://open.spotify.com/intl-it/artist/0eR1N0sXNOK23UZ66bt5jH",
-      instagram: "",
-      beatport: ""
-    }
+
   ],
 
   /* ---------- ULTIME USCITE ----------
