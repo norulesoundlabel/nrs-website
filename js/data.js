@@ -20,8 +20,8 @@ window.NRS_DATA = {
     shortName: "NRS",
     tagline: "Italian hard dance, hard techno & industrial collective.",
     taglineEn: "Italian hard dance, hard techno & industrial collective.",
-    subtagline: "Nessuna regola. Solo BPM alti e nessun compromesso.",
-    subtaglineEn: "No rules. Just high BPM and no compromises.",
+    subtagline: "NO RULES, JUST SOUND.\nDESTROY THE SILENCE",
+    subtaglineEn: "NO RULES, JUST SOUND.\nDESTROY THE SILENCE",
     location: "Italia",
     // Testo breve "chi siamo" mostrato nella sezione About
     about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dalle leggendarie \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo hard techno, industrial, schranz, bounce e neo rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica.",
