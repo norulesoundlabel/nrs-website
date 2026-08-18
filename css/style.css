@@ -335,6 +335,22 @@ p{ margin:0; }
   color: var(--paper-dim);
 }
 .artist-card__links a:hover{ color: var(--amber); }
+.artist-card__booking{
+  display:block;
+  margin-top:0.35rem;
+  padding:0.72rem 0.9rem;
+  border:1px solid var(--amber);
+  background:var(--amber);
+  color:var(--bg);
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-align:center;
+  text-decoration:none;
+  transition:background .15s ease, color .15s ease, transform .1s ease;
+}
+.artist-card__booking:hover{ background:transparent; color:var(--amber); transform:translateY(-1px); }
 
 /* ============================================================
    RELEASES
