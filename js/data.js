@@ -104,6 +104,7 @@ window.NRS_DATA = {
     {
       catalogNo: "01",
       name: "TMPST",
+      bookable: true,
       genre: "Hard Techno",
       bio: "TMPST, classe 2002, è DJ, producer e co-founder di No Rules Sound. La sua hard techno è fatta di ritmi martellanti, atmosfere oscure ed energia brutale. Cresciuto nell'underground, ha sviluppato un sound personale e potente. I suoi set, ad alto impatto e adrenalina, lo stanno affermando come una delle nuove promesse della scena hard techno.",
       bioEn: "TMPST, born in 2002, is a DJ, producer and co-founder of No Rules Sound. His hard techno is made of hammering rhythms, dark atmospheres, and raw energy. Raised in the underground scene, he has developed a powerful and distinctive sound. His high-impact, adrenaline-filled sets are establishing him as one of the new rising talents in the hard techno scene.",
@@ -115,6 +116,7 @@ window.NRS_DATA = {
     {
       catalogNo: "02",
       name: "FAE NRS",
+      bookable: true,
       genre: "Oriental Hard Techno",
       bio: "Fondatore e punto di riferimento di Norulesound, Fae porta con sé un suono molto caratteristico plasmato dalle sue origini. I suoi set fondono Hard Techno e suoni mediorientali, creando un'esperienza esotica unica che evoca stati di coinvolgimento culturale attraverso vari generi musicali. In passato ha condiviso il palco con artisti come Azyr, Jazzy, Jowi, Øtta, Rikhter e Rebekah. Lasciati trasportare in un viaggio sonoro senza precedenti.",
       bioEn: "Founder and point of reference of NoRuleSound, Fae brings a very characteristic sound shaped by its origins. His sets intertwine Hard Techno with Middle Eastern sounds creating a one-of-a-kind exotic experience that evokes states of cultural involvement across various musical genres. In the past, he has shared the stage with the likes of Azyr, Jazzy, Jowi, Øtta, Rikhter, Rebekah. Let yourself be transported on an unprecedented sound journey.",
@@ -126,6 +128,7 @@ window.NRS_DATA = {
     {
       catalogNo: "03",
       name: "HVNTER",
+      bookable: true,
       genre: "Schranz",
       bio: "HVNTER è un DJ e produttore techno fiorentino nato nel 2001. Attivo fin dai 14 anni, ha fatto il suo debutto nei club underground a 20 anni. Nel 2023 è entrato a far parte del collettivo No Rules Sound, con il quale ha pubblicato i brani \"In My Way\" e \"Hijo de la Luna (schranz)\". Il suo sound è grezzo e fedele alle radici del genere.",
       bioEn: "HVNTER is a Florentine techno DJ and producer born in 2001. Active since 14, he made his debut in underground clubs at 20. In 2023 he joined the No Rules Sound collective, with which he released the songs \"In My Way\" and \"Hijo de la Luna (schranz)\". Its sound is raw, hypnotic and faithful to the roots of the genre.",
@@ -137,6 +140,7 @@ window.NRS_DATA = {
     {
       catalogNo: "04",
       name: "TSK Phønič",
+      bookable: true,
       genre: "Hardtechno / Industrial / Raw",
       bio: "TSK PHONIC è un DJ e produttore hard techno/industrial di Padova. La sua musica combina atmosfere oscure e ritmi aggressivi, creando un contrasto emotivo tra dolcezza e rabbia. Ogni suo set è un viaggio unico, un portale in cui luce e oscurità si fondono in pura energia sonora, lasciando l'ascoltatore profondamente cambiato.",
       bioEn: "TSK PHONIC is a DJ and hard techno/industrial producer from Padua. His music combines dark atmospheres and aggressive rhythms, creating an emotional contrast between sweetness and anger. Each set is a unique journey, a portal where light and darkness merge into pure sound energy, leaving the listener profoundly changed.",
@@ -148,6 +152,7 @@ window.NRS_DATA = {
     {
       catalogNo: "05",
       name: "RandeX",
+      bookable: true,
       genre: "Hardtechno",
       bio: "Tommaso Randelli, in arte RandeX, è un DJ e producer italiano del 2003. Attivo nella Hard techno e Hard Dance, ha iniziato la sua carriera da poco più di un anno, spinto da una passione coltivata fin da piccolo. Nei suoi set unisce aggressività e malinconia, alternando sonorità dure a momenti melodici influenzati da Hardbounce ed elettronica. Mira a trasformare ogni esibizione in un viaggio intenso e personale.",
       bioEn: "RandeX, stage name of Tommaso Randelli (born in 2003), is an Italian DJ and producer active in the Hard Techno and Hard Dance scene. He began his career just over a year ago, driven by a passion cultivated since childhood. His sets blend intensity and melancholy, alternating aggressive sounds with melodic moments influenced by Hardbounce and electronic music. His goal is to turn every performance into an intense and personal journey.",
@@ -159,6 +164,7 @@ window.NRS_DATA = {
     {
       catalogNo: "06",
       name: "Danny Candy",
+      bookable: true,
       genre: "Bounce Techno",
       bio: "DannyCandy è il progetto bounce di No Rules Sound: una miscela esplosiva di bassi, ritmo e identità nascoste. Nasce dal desiderio di voler espandere i propri confini musicali. Ogni set è una sorpresa continua, tra energia, caos controllato e vibrazioni cucite sul dancefloor. I due dj non si mostrano e si alternano tra di loro per offrire ogni volta un'esperienza diversa.",
       bioEn: "DannyCandy is the Bounce project of No Rules Sound: an explosive mix of basses, rhythm and hidden identities born from the desire to expand their musical boundaries. Every set is a constant surprise, between energy, controlled chaos, and vibrations sewn to the dancefloor. The two DJs don't show out and they switch between each other to offer a different experience every time.",
@@ -170,6 +176,7 @@ window.NRS_DATA = {
     {
       catalogNo: "07",
       name: "Sandro Cardio",
+      bookable: false,
       genre: "Hard Techno",
       bio: "Sandro Cardio, producer e DJ italiano, ha aperto il catalogo NRS Records nel 2024 con \"Welcome to No Rules\" (NRS001). Da allora ha collaborato con nomi come Jovynn, Lorenzø, Gianma Bln, Daisy Guglielmi, Cris Way e Alysh, superando i 6 milioni di ascolti e ricevendo supporto da artisti come Nico Moreno, Steve Aoki, Dimitri Vegas & Like Mike, I Hate Models e Fatima Hajji.",
       bioEn: "Italian producer and DJ Sandro Cardio opened the NRS Records catalogue in 2024 with \"Welcome to No Rules\" (NRS001). Since then, he has collaborated with artists including Jovynn, Lorenzø, Gianma Bln, Daisy Guglielmi, Cris Way and Alysh, surpassing 6 million streams and earning support from Nico Moreno, Steve Aoki, Dimitri Vegas & Like Mike, I Hate Models and Fatima Hajji.",
@@ -181,6 +188,7 @@ window.NRS_DATA = {
     {
       catalogNo: "08",
       name: "KØDA",
+      bookable: false,
       genre: "Hard Bounce",
       bio: "KØDA, DJ e producer argentino, porta nel roster NRS il lato più \"bounce\" e dancefloor del collettivo — energia diretta e groove pensato per far saltare la pista.",
       bioEn: "Argentinian DJ and producer KØDA brings the collective's most bounce-driven, dance-floor-focused side to the NRS roster — direct energy and grooves made to move the crowd.",
@@ -188,6 +196,19 @@ window.NRS_DATA = {
       soundcloud: "https://soundcloud.com/89koda",
       instagram: "https://www.instagram.com/89koda/",
       beatport: "https://www.beatport.com/artist/koda/98128"
+    },
+    {
+      catalogNo: "09",
+      name: "SELICATO",
+      bookable: false,
+      genre: "Bounce / Hardbounce",
+      bio: "SELICATO è il progetto di Giuseppe Selicato, DJ e producer italiano nato a Monopoli. Attivo dal 2019, costruisce set ad alta intensità tra bounce, hardbounce e sonorità hard, con un approccio diretto e istintivo al dancefloor. Dalla scena italiana ai club europei, porta un’energia precisa, fisica e senza compromessi.",
+      bioEn: "SELICATO is the project of Italian DJ and producer Giuseppe Selicato. Active since 2019, he delivers high-intensity sets shaped by bounce, hardbounce and hard sounds, with a direct and instinctive feel for the dancefloor. From the Italian scene to European clubs, he brings focused, physical and uncompromising energy.",
+      image: "",
+      soundcloud: "https://soundcloud.com/selicato",
+      spotify: "https://open.spotify.com/intl-it/artist/0eR1N0sXNOK23UZ66bt5jH",
+      instagram: "",
+      beatport: ""
     }
   ],
 
