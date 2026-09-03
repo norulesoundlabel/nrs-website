@@ -18,14 +18,14 @@ window.NRS_DATA = {
   label: {
     name: "NO RULES SOUND",
     shortName: "NRS",
-    tagline: "Italian hard dance, hard techno & industrial collective.",
-    taglineEn: "Italian hard dance, hard techno & industrial collective.",
+    tagline: "Italian hard bounce, hard techno & industrial collective.",
+    taglineEn: "Italian hard bounce, hard techno & industrial collective.",
     subtagline: "NO RULES, JUST SOUND.\nDESTROY THE SILENCE",
     subtaglineEn: "NO RULES, JUST SOUND.\nDESTROY THE SILENCE",
     location: "Italia",
     // Testo breve "chi siamo" mostrato nella sezione About
-    about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dalle leggendarie \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo hard techno, industrial, schranz, bounce e neo rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica.",
-    aboutEn: "No Rules Sound was born from the energy of car parks turned into dance floors: from legendary underground afterparties, where the only goals were to dance, connect and build a community, the collective grew into what it is today. Through NRS Records we release hard techno, industrial, schranz, bounce and neo rave, with one rule: no rules. We believe in a safe, inclusive and unfiltered space where anyone can express themselves freely through music."
+    about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dai leggendari \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo hard techno, industrial, schranz, hard bounce e neo rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica.",
+    aboutEn: "No Rules Sound was born from the energy of car parks turned into dance floors: from legendary underground afterparties, where the only goals were to dance, connect and build a community, the collective grew into what it is today. Through NRS Records we release hard techno, industrial, schranz, hard bounce and neo rave, with one rule: no rules. We believe in a safe, inclusive and unfiltered space where anyone can express themselves freely through music."
   },
 
   /* ---------- CONTATTI ---------- */
@@ -45,7 +45,7 @@ window.NRS_DATA = {
     // spotifyPlaylistEmbedUrl più sotto.
     spotify: "https://open.spotify.com/artist/4ZYpceTd0FQmD7bLuEDhSO",
     beatport: "https://www.beatport.com/label/nrs-records/127009",
-    tiktok: "",
+    tiktok: "https://www.tiktok.com/@no.rules.sound",
     youtube: "",
     bandcamp: ""
   },
@@ -80,9 +80,9 @@ window.NRS_DATA = {
      nulla a mano. Per il prossimo pre-save, sostituite semplicemente questi
      3 valori con quelli della prossima uscita. */
   presave: {
-    trackTitle: "",            // es. "NRS015 — Titolo brano"
-    url: "",                   // link al pre-save (feature.fm, distributore, ecc.)
-    releaseDate: ""            // es. "2026-09-05" — lasciate vuoto per nascondere il box
+    trackTitle: "HVNTER — Emotional Breakout",
+    url: "https://hypeddit.com/hvnter/emotionalbreakout",
+    releaseDate: ""            // opzionale: dopo questa data il box viene nascosto automaticamente
   },
 
   // Embed di una playlist Spotify (aperta, pubblica). Per ottenerlo:
@@ -115,11 +115,11 @@ window.NRS_DATA = {
     },
     {
       catalogNo: "02",
-      name: "FAE NRS",
+      name: "Fae نرس",
       bookable: true,
       genre: "Oriental Hard Techno",
-      bio: "Fondatore e punto di riferimento di Norulesound, Fae porta con sé un suono molto caratteristico plasmato dalle sue origini. I suoi set fondono Hard Techno e suoni mediorientali, creando un'esperienza esotica unica che evoca stati di coinvolgimento culturale attraverso vari generi musicali. In passato ha condiviso il palco con artisti come Azyr, Jazzy, Jowi, Øtta, Rikhter e Rebekah. Lasciati trasportare in un viaggio sonoro senza precedenti.",
-      bioEn: "Founder and point of reference of NoRuleSound, Fae brings a very characteristic sound shaped by its origins. His sets intertwine Hard Techno with Middle Eastern sounds creating a one-of-a-kind exotic experience that evokes states of cultural involvement across various musical genres. In the past, he has shared the stage with the likes of Azyr, Jazzy, Jowi, Øtta, Rikhter, Rebekah. Let yourself be transported on an unprecedented sound journey.",
+      bio: "Fondatore e punto di riferimento di No Rules Sound, Fae porta con sé un suono molto caratteristico plasmato dalle sue origini. I suoi set fondono Hard Techno e suoni mediorientali, creando un'esperienza esotica unica che evoca stati di coinvolgimento culturale attraverso vari generi musicali. In passato ha condiviso il palco con artisti come Azyr, Jazzy, Jowi, Øtta, Rikhter e Rebekah. Lasciati trasportare in un viaggio sonoro senza precedenti.",
+      bioEn: "Founder and point of reference of No Rules Sound, Fae brings a very characteristic sound shaped by its origins. His sets intertwine Hard Techno with Middle Eastern sounds creating a one-of-a-kind exotic experience that evokes states of cultural involvement across various musical genres. In the past, he has shared the stage with the likes of Azyr, Jazzy, Jowi, Øtta, Rikhter, Rebekah. Let yourself be transported on an unprecedented sound journey.",
       image: "https://i1.sndcdn.com/avatars-hzpHsfekEximbfhF-IiYsRA-t500x500.jpg",
       soundcloud: "https://soundcloud.com/faenrs",
       instagram: "https://www.instagram.com/fae.music_nrs/",
@@ -139,11 +139,11 @@ window.NRS_DATA = {
     },
     {
       catalogNo: "04",
-      name: "TSK Phønič",
+      name: "TSK Phonic",
       bookable: true,
       genre: "Hardtechno / Industrial / Raw",
-      bio: "TSK PHONIC è un DJ e produttore hard techno/industrial di Padova. La sua musica combina atmosfere oscure e ritmi aggressivi, creando un contrasto emotivo tra dolcezza e rabbia. Ogni suo set è un viaggio unico, un portale in cui luce e oscurità si fondono in pura energia sonora, lasciando l'ascoltatore profondamente cambiato.",
-      bioEn: "TSK PHONIC is a DJ and hard techno/industrial producer from Padua. His music combines dark atmospheres and aggressive rhythms, creating an emotional contrast between sweetness and anger. Each set is a unique journey, a portal where light and darkness merge into pure sound energy, leaving the listener profoundly changed.",
+      bio: "TSK Phonic è un DJ e produttore hard techno/industrial di Padova. La sua musica combina atmosfere oscure e ritmi aggressivi, creando un contrasto emotivo tra dolcezza e rabbia. Ogni suo set è un viaggio unico, un portale in cui luce e oscurità si fondono in pura energia sonora, lasciando l'ascoltatore profondamente cambiato.",
+      bioEn: "TSK Phonic is a DJ and hard techno/industrial producer from Padua. His music combines dark atmospheres and aggressive rhythms, creating an emotional contrast between sweetness and anger. Each set is a unique journey, a portal where light and darkness merge into pure sound energy, leaving the listener profoundly changed.",
       image: "https://i1.sndcdn.com/avatars-CzCHkcN17xmbutgl-4ycHMQ-t500x500.jpg",
       soundcloud: "https://soundcloud.com/tsk_phonic",
       instagram: "https://www.instagram.com/tsk_phonic/",
@@ -154,8 +154,8 @@ window.NRS_DATA = {
       name: "RandeX",
       bookable: true,
       genre: "Hardtechno",
-      bio: "Tommaso Randelli, in arte RandeX, è un DJ e producer italiano del 2003. Attivo nella Hard techno e Hard Dance, ha iniziato la sua carriera da poco più di un anno, spinto da una passione coltivata fin da piccolo. Nei suoi set unisce aggressività e malinconia, alternando sonorità dure a momenti melodici influenzati da Hardbounce ed elettronica. Mira a trasformare ogni esibizione in un viaggio intenso e personale.",
-      bioEn: "RandeX, stage name of Tommaso Randelli (born in 2003), is an Italian DJ and producer active in the Hard Techno and Hard Dance scene. He began his career just over a year ago, driven by a passion cultivated since childhood. His sets blend intensity and melancholy, alternating aggressive sounds with melodic moments influenced by Hardbounce and electronic music. His goal is to turn every performance into an intense and personal journey.",
+      bio: "Tommaso Randelli, in arte RandeX, è un DJ e producer italiano del 2003. Attivo nella Hard Techno e Hard Bounce, ha iniziato la sua carriera da poco più di un anno, spinto da una passione coltivata fin da piccolo. Nei suoi set unisce aggressività e malinconia, alternando sonorità dure a momenti melodici influenzati da Hard Bounce ed elettronica. Mira a trasformare ogni esibizione in un viaggio intenso e personale.",
+      bioEn: "RandeX, stage name of Tommaso Randelli (born in 2003), is an Italian DJ and producer active in the Hard Techno and Hard Bounce scene. He began his career just over a year ago, driven by a passion cultivated since childhood. His sets blend intensity and melancholy, alternating aggressive sounds with melodic moments influenced by Hard Bounce and electronic music. His goal is to turn every performance into an intense and personal journey.",
       image: "https://i1.sndcdn.com/avatars-dh1AhdgQDifAFVV5-fWlryA-t500x500.jpg",
       soundcloud: "https://soundcloud.com/randex_nrs",
       instagram: "https://www.instagram.com/randex.music_nrs/",
@@ -163,11 +163,11 @@ window.NRS_DATA = {
     },
     {
       catalogNo: "06",
-      name: "Danny Candy",
+      name: "DannyCandy",
       bookable: true,
-      genre: "Bounce Techno",
-      bio: "DannyCandy è il progetto bounce di No Rules Sound: una miscela esplosiva di bassi, ritmo e identità nascoste. Nasce dal desiderio di voler espandere i propri confini musicali. Ogni set è una sorpresa continua, tra energia, caos controllato e vibrazioni cucite sul dancefloor. I due dj non si mostrano e si alternano tra di loro per offrire ogni volta un'esperienza diversa.",
-      bioEn: "DannyCandy is the Bounce project of No Rules Sound: an explosive mix of basses, rhythm and hidden identities born from the desire to expand their musical boundaries. Every set is a constant surprise, between energy, controlled chaos, and vibrations sewn to the dancefloor. The two DJs don't show out and they switch between each other to offer a different experience every time.",
+      genre: "Hard Bounce",
+      bio: "DannyCandy è il progetto hard bounce di No Rules Sound: una miscela esplosiva di bassi, ritmo e identità nascoste. Nasce dal desiderio di voler espandere i propri confini musicali. Ogni set è una sorpresa continua, tra energia, caos controllato e vibrazioni cucite sul dancefloor. I due DJ non si mostrano e si alternano tra di loro per offrire ogni volta un'esperienza diversa.",
+      bioEn: "DannyCandy is the hard bounce project of No Rules Sound: an explosive mix of bass, rhythm and hidden identities born from the desire to expand their musical boundaries. Every set is a constant surprise, between energy, controlled chaos, and vibrations made for the dancefloor. The two DJs remain anonymous and switch between each other to offer a different experience every time.",
       image: "https://i1.sndcdn.com/avatars-TcastgrW1b3GYVjh-Vfgiag-t500x500.jpg",
       soundcloud: "https://soundcloud.com/dannycandy",
       instagram: "https://www.instagram.com/dannycandy_nrs/",
@@ -190,14 +190,13 @@ window.NRS_DATA = {
       name: "KØDA",
       bookable: false,
       genre: "Hard Bounce",
-      bio: "KØDA, DJ e producer argentino, porta nel roster NRS il lato più \"bounce\" e dancefloor del collettivo — energia diretta e groove pensato per far saltare la pista.",
-      bioEn: "Argentinian DJ and producer KØDA brings the collective's most bounce-driven, dance-floor-focused side to the NRS roster — direct energy and grooves made to move the crowd.",
+      bio: "KØDA, DJ e producer argentino, porta nel roster NRS il lato più hard bounce e dancefloor del collettivo — energia diretta e groove pensato per far saltare la pista.",
+      bioEn: "Argentinian DJ and producer KØDA brings the collective's most hard-bounce-driven, dance-floor-focused side to the NRS roster — direct energy and grooves made to move the crowd.",
       image: "https://i1.sndcdn.com/avatars-TCzC1hAG1OI9pwez-sIGk4A-t500x500.jpg",
       soundcloud: "https://soundcloud.com/89koda",
       instagram: "https://www.instagram.com/89koda/",
       beatport: "https://www.beatport.com/artist/koda/98128"
-    },
-
+    }
   ],
 
   /* ---------- ULTIME USCITE ----------
