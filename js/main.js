@@ -26,7 +26,7 @@
       heroRoster: "Scopri il roster", heroReleases: "Ultime uscite",
       artistsTitle: "Gli artisti", catalogLabel: "Catalogo", releasesTitle: "Ultime uscite",
       listenLabel: "Ascolta", playlistText: "Tutte le tracce NRS in un unico posto. Seguila per non perdere nessuna uscita.",
-      comingLabel: "In arrivo", stayConnected: "Resta connesso",
+      comingLabel: "In arrivo", presaveText: "Qui trovi le prossime uscite. Salvale ora e ascoltale appena escono.", stayConnected: "Resta connesso",
       newsletterText: "Nuove uscite, date live e drop in anteprima, dritti in inbox. Niente spam, promesso — no rules, ma questa la rispettiamo.",
       footerTag: "No Rules Sound — Italian hard bounce, hard techno & industrial collective.",
       followLabel: "Seguici", rights: "Tutti i diritti riservati.",
@@ -42,7 +42,7 @@
       heroRoster: "Discover the roster", heroReleases: "Latest releases",
       artistsTitle: "The artists", catalogLabel: "Catalogue", releasesTitle: "Latest releases",
       listenLabel: "Listen", playlistText: "All NRS tracks in one place. Follow the playlist and never miss a release.",
-      comingLabel: "Coming soon", stayConnected: "Stay connected",
+      comingLabel: "Coming soon", presaveText: "Find the next releases here. Save them now and listen as soon as they drop.", stayConnected: "Stay connected",
       newsletterText: "New releases, live dates and early drops, straight to your inbox. No spam, promise — no rules, but we respect this one.",
       footerTag: "No Rules Sound — Italian hard bounce, hard techno & industrial collective.",
       followLabel: "Follow us", rights: "All rights reserved.",
@@ -242,7 +242,17 @@
     const releaseDate = p.releaseDate ? new Date(p.releaseDate + "T23:59:59") : null;
     const isUpcoming = p.url && (!releaseDate || (!isNaN(releaseDate) && releaseDate.getTime() >= Date.now()));
     if(isUpcoming){
-      presaveBox.appendChild(el("p", "presave-box__track mono", escapeHtml(p.trackTitle || "")));
+      const meta = el("div", "presave-box__meta");
+      if(p.cover){
+        const cover = document.createElement("img");
+        cover.className = "presave-box__cover";
+        cover.src = p.cover;
+        cover.alt = p.trackTitle || "";
+        cover.loading = "lazy";
+        meta.appendChild(cover);
+      }
+      meta.appendChild(el("p", "presave-box__track mono", escapeHtml(p.trackTitle || "")));
+      presaveBox.appendChild(meta);
       const a = el("a", "btn btn--primary btn--full");
       a.dataset.copyKey = "presaveNow";
       a.href = p.url; a.target = "_blank"; a.rel = "noopener";
@@ -360,6 +370,7 @@
   /* ---------- MICRO-ANIMAZIONI ---------- */
   if("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
     document.documentElement.classList.add("is-animated");
+    requestAnimationFrame(() => document.documentElement.classList.add("is-loaded"));
     const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
