@@ -28,9 +28,9 @@
       listenLabel: "Ascolta", playlistText: "Tutte le tracce NRS in un unico posto. Seguila per non perdere nessuna uscita.",
       comingLabel: "In arrivo", stayConnected: "Resta connesso",
       newsletterText: "Nuove uscite, date live e drop in anteprima, dritti in inbox. Niente spam, promesso — no rules, ma questa la rispettiamo.",
-      footerTag: "No Rules Sound — Italian hard dance, hard techno, industrial & bounce collective.",
+      footerTag: "No Rules Sound — Italian hard bounce, hard techno & industrial collective.",
       followLabel: "Seguici", rights: "Tutti i diritti riservati.",
-      rosterNumber: "ROSTER Nº", booking: "Booking", presaveNow: "Pre-save ora",
+      rosterNumber: "ROSTER Nº", booking: "Booking", bookingArtists: "Artists", productionTeam: "Team Production", presaveNow: "Pre-save ora",
       noPresave: "Nessuna uscita in pre-save al momento. Torna presto — o seguici sui social per essere avvisato.",
       subscribe: "Iscriviti alla newsletter",
       noSoundcloud: "Account SoundCloud non collegato: aggiungi il link in js/data.js → socials.soundcloud.",
@@ -44,9 +44,9 @@
       listenLabel: "Listen", playlistText: "All NRS tracks in one place. Follow the playlist and never miss a release.",
       comingLabel: "Coming soon", stayConnected: "Stay connected",
       newsletterText: "New releases, live dates and early drops, straight to your inbox. No spam, promise — no rules, but we respect this one.",
-      footerTag: "No Rules Sound — Italian hard dance, hard techno, industrial & bounce collective.",
+      footerTag: "No Rules Sound — Italian hard bounce, hard techno & industrial collective.",
       followLabel: "Follow us", rights: "All rights reserved.",
-      rosterNumber: "ROSTER NO.", booking: "Booking", presaveNow: "Pre-save now",
+      rosterNumber: "ROSTER NO.", booking: "Booking", bookingArtists: "Artists", productionTeam: "Production Team", presaveNow: "Pre-save now",
       noPresave: "There are no releases available for pre-save right now. Check back soon — or follow us on social media for updates.",
       subscribe: "Join the newsletter",
       noSoundcloud: "SoundCloud is not connected yet: add the link in js/data.js → socials.soundcloud.",
@@ -62,7 +62,7 @@
   if ($("#heroTitle")) $("#heroTitle").textContent = D.label.name || "NO RULES SOUND";
   if ($("#heroSub")) $("#heroSub").textContent = D.label.subtagline || "";
   if ($("#aboutText")) $("#aboutText").textContent = D.label.about || "";
-  document.title = (D.label.name || "NO RULES SOUND") + " — Hard Dance / Hard Techno / Industrial Collective";
+  document.title = (D.label.name || "NO RULES SOUND") + " — Hard Bounce / Hard Techno / Industrial Collective";
 
   /* ---------- SOCIAL PILLS (about + footer) ---------- */
   function buildSocialRow(container){
@@ -89,9 +89,10 @@
   buildSocialRow($("#footerSocialRow"));
 
   /* ---------- ROSTER ---------- */
-  const rosterGrid = $("#rosterGrid");
+  const artistsGrid = $("#artistsGrid");
+  const productionGrid = $("#productionGrid");
   const photoRefreshTargets = []; // { img, soundcloudUrl } — usato più sotto per l'auto-refresh foto da SoundCloud
-  if(rosterGrid && Array.isArray(D.roster)){
+  if((artistsGrid || productionGrid) && Array.isArray(D.roster)){
     D.roster.forEach(artist => {
       const card = el("article", "artist-card");
 
@@ -139,10 +140,6 @@
         const a = el("a", "", "Beatport"); a.href = artist.beatport; a.target="_blank"; a.rel="noopener";
         links.appendChild(a);
       }
-      if(artist.spotify){
-        const a = el("a", "", "Spotify"); a.href = artist.spotify; a.target="_blank"; a.rel="noopener";
-        links.appendChild(a);
-      }
       if(links.children.length) card.appendChild(links);
 
       if(artist.bookable && D.contact && D.contact.bookingEmail){
@@ -151,7 +148,8 @@
         card.appendChild(booking);
       }
 
-      rosterGrid.appendChild(card);
+      const targetGrid = artist.bookable ? artistsGrid : productionGrid;
+      if(targetGrid) targetGrid.appendChild(card);
     });
   }
 
@@ -242,7 +240,7 @@
   if(presaveBox){
     const p = D.presave || {};
     const releaseDate = p.releaseDate ? new Date(p.releaseDate + "T23:59:59") : null;
-    const isUpcoming = p.url && releaseDate && !isNaN(releaseDate) && releaseDate.getTime() >= Date.now();
+    const isUpcoming = p.url && (!releaseDate || (!isNaN(releaseDate) && releaseDate.getTime() >= Date.now()));
     if(isUpcoming){
       presaveBox.appendChild(el("p", "presave-box__track mono", escapeHtml(p.trackTitle || "")));
       const a = el("a", "btn btn--primary btn--full");
@@ -325,8 +323,8 @@
     if($("#aboutText")) $("#aboutText").textContent = currentLang === "en" ? (D.label.aboutEn || D.label.about) : D.label.about;
 
     const description = currentLang === "en"
-      ? "No Rules Sound — Italian hard dance, hard techno, industrial and bounce collective and label. Artists, releases, playlist and contacts."
-      : "No Rules Sound — collettivo ed etichetta hard dance, hard techno, industrial e bounce. Artisti, uscite, playlist e contatti.";
+      ? "No Rules Sound — Italian hard bounce, hard techno and industrial collective and label. Artists, releases, playlist and contacts."
+      : "No Rules Sound — collettivo ed etichetta hard bounce, hard techno e industrial. Artisti, uscite, playlist e contatti.";
     const metaDescription = document.querySelector('meta[name="description"]');
     const ogDescription = document.querySelector('meta[property="og:description"]');
     if(metaDescription) metaDescription.content = description;
@@ -357,6 +355,23 @@
       navLinks.classList.remove("is-open");
       navToggle.setAttribute("aria-expanded", "false");
     }));
+  }
+
+  /* ---------- MICRO-ANIMAZIONI ---------- */
+  if("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    document.documentElement.classList.add("is-animated");
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".section, .artist-card, .about").forEach(node => {
+      node.classList.add("reveal");
+      revealObserver.observe(node);
+    });
   }
 
 })();
