@@ -271,6 +271,14 @@ p{ margin:0; }
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: var(--gap);
 }
+.roster-group + .roster-group{ margin-top: clamp(3rem, 6vw, 5rem); }
+.roster-group__title{
+  margin:0 0 1rem;
+  color:var(--amber);
+  font-size:0.82rem;
+  letter-spacing:0.13em;
+  text-transform:uppercase;
+}
 .artist-card{
   background: var(--bg-raised);
   border: 1px solid var(--wire);
@@ -351,6 +359,23 @@ p{ margin:0; }
   transition:background .15s ease, color .15s ease, transform .1s ease;
 }
 .artist-card__booking:hover{ background:transparent; color:var(--amber); transform:translateY(-1px); }
+
+/* Entrate progressive: solo CSS/JS nativi, quindi compatibili con Cloudflare Pages. */
+@media (prefers-reduced-motion: no-preference){
+  .is-animated .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .65s ease, transform .65s cubic-bezier(.2,.75,.25,1);
+  }
+  .is-animated .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  .is-animated .artist-card.reveal:nth-child(2){ transition-delay:.06s; }
+  .is-animated .artist-card.reveal:nth-child(3){ transition-delay:.12s; }
+  .is-animated .artist-card.reveal:nth-child(4){ transition-delay:.18s; }
+  .is-animated .artist-card.reveal:nth-child(5){ transition-delay:.24s; }
+  .is-animated .artist-card.reveal:nth-child(6){ transition-delay:.3s; }
+  .hero__stripe{ animation:stripe-pulse 4.5s ease-in-out infinite; }
+  @keyframes stripe-pulse{ 50%{ opacity:.62; } }
+}
 
 /* ============================================================
    RELEASES
