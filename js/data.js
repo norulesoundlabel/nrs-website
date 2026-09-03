@@ -82,6 +82,7 @@ window.NRS_DATA = {
   presave: {
     trackTitle: "HVNTER — Emotional Breakout",
     url: "https://hypeddit.com/hvnter/emotionalbreakout",
+    cover: "https://hypeddit-gates-prod.s3.amazonaws.com/julgev_compressed_artwork.webp",
     releaseDate: ""            // opzionale: dopo questa data il box viene nascosto automaticamente
   },
 
