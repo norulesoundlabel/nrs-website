@@ -44,6 +44,13 @@ body{
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
+body::before{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  opacity:.32;
+  background-image:radial-gradient(rgba(236,231,219,.12) .55px, transparent .65px);
+  background-size:5px 5px;
+  mask-image:linear-gradient(to bottom, #000, transparent 82%);
+}
 
 img{ max-width:100%; display:block; }
 a{ color: inherit; }
@@ -134,6 +141,7 @@ p{ margin:0; }
   color: var(--amber);
   border-color: var(--amber);
 }
+.nav__links a.is-active{ color:var(--paper); border-color:var(--amber); }
 .nav__toggle{
   display:none;
   flex-direction:column; gap:5px;
@@ -175,6 +183,11 @@ p{ margin:0; }
   background:
     radial-gradient(ellipse at 50% 20%, rgba(255,106,19,0.14), transparent 60%),
     var(--bg);
+}
+.hero::before{
+  content:""; position:absolute; inset:-25%; pointer-events:none;
+  background:radial-gradient(circle at 50% 25%, rgba(255,106,19,.12), transparent 30%);
+  filter:blur(14px); opacity:.72;
 }
 .hero__stripe{
   position:absolute; left:0; right:0; height: 10px;
@@ -309,6 +322,15 @@ p{ margin:0; }
   font-size: 0.75rem;
   color: var(--amber);
 }
+.artist-card__status{
+  align-self:flex-start;
+  padding:.26rem .48rem;
+  border:1px solid rgba(255,106,19,.48);
+  color:var(--amber);
+  font-size:.64rem;
+  letter-spacing:.11em;
+  line-height:1;
+}
 .artist-card__mono{
   width: 56px; height: 56px;
   display:flex; align-items:center; justify-content:center;
@@ -375,6 +397,11 @@ p{ margin:0; }
   transition:background .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease;
 }
 .artist-card__booking:hover{ background:transparent; color:var(--amber); transform:translate(-2px,-2px); box-shadow:3px 3px 0 var(--amber-dim); }
+.roster__cta{
+  display:flex; align-items:center; justify-content:space-between; gap:1.25rem; flex-wrap:wrap;
+  margin-top:clamp(3rem, 5vw, 4.5rem); padding-top:1.5rem; border-top:1px solid var(--wire);
+}
+.roster__cta p{ color:var(--paper-dim); font-size:.8rem; }
 
 /* Entrate progressive: solo CSS/JS nativi, quindi compatibili con Cloudflare Pages. */
 @media (prefers-reduced-motion: no-preference){
@@ -407,6 +434,8 @@ p{ margin:0; }
 .releases{
   display:flex; flex-direction:column;
   border-top: 1px solid var(--wire);
+  content-visibility:auto;
+  contain-intrinsic-size:500px;
 }
 .release-row{
   display:grid;
@@ -445,30 +474,41 @@ p{ margin:0; }
    ============================================================ */
 .split{
   display:grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: clamp(2.5rem, 6vw, 5rem);
   align-items:start;
 }
+.split__col{ min-width:0; }
 @media (max-width: 760px){
   .split{ grid-template-columns: 1fr; }
 }
 .split__text{ color: var(--paper-dim); margin: 1rem 0 1.4rem; }
 .split__text--presave{ max-width:38ch; margin-bottom:1rem; }
+#spotifyEmbedWrap{ content-visibility:auto; contain-intrinsic-size:380px; }
+#spotifyEmbedWrap iframe{ display:block; max-width:100%; }
 
 .presave-box{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  margin-top:22.4px;
   border: 1px solid var(--wire);
   background: var(--bg-raised);
-  padding: 1.15rem;
-  max-width: 420px;
+  min-height:380px;
+  width:100%;
+  padding:2rem;
+  text-align:center;
 }
-.presave-box__meta{ display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+.presave-box__meta{ display:flex; flex-direction:column; align-items:center; gap:1.15rem; margin-bottom:1.75rem; }
 .presave-box__cover{
-  width:88px; height:88px; flex:0 0 88px; object-fit:cover;
+  width:176px; height:176px; flex:0 0 176px; object-fit:cover;
   border:1px solid var(--wire); background:var(--bg);
+  box-shadow:8px 8px 0 rgba(255,106,19,.16);
 }
 .presave-box__track{ font-family: var(--font-mono); font-size:0.85rem; color: var(--paper-dim); margin-bottom: 0.9rem; }
-.presave-box__meta .presave-box__track{ margin:0; line-height:1.45; max-width:22ch; }
-.presave-box .btn{ min-height:44px; padding-top:.75rem; padding-bottom:.75rem; }
+.presave-box__meta .presave-box__track{ margin:0; line-height:1.45; max-width:30ch; }
+.presave-box .btn{ min-height:48px; width:min(100%, 360px); padding-top:.75rem; padding-bottom:.75rem; }
 .presave-box__empty{ color: var(--paper-dim); font-size: 0.95rem; }
 
 /* ============================================================
@@ -538,6 +578,18 @@ p{ margin:0; }
   .btn{ width:100%; }
   .hero__cta{ width:100%; }
   .hero__cta .btn{ max-width:360px; }
+  .roster__cta{ align-items:stretch; }
+  .roster__cta .btn{ width:100%; }
+}
+@media (max-width: 480px){
+  .nav{ padding:.75rem 1rem; }
+  .hero{ min-height:78dvh; padding:3rem 1rem; }
+  .section{ padding-left:1rem; padding-right:1rem; }
+  .roster-grid{ grid-template-columns:1fr; }
+  .artist-card{ padding:1.25rem; }
+  .split{ gap:3rem; }
+  .presave-box{ min-height:0; padding:1.75rem 1rem; }
+  .presave-box__cover{ width:140px; height:140px; flex-basis:140px; }
 }
 @media (max-width: 700px){
   .footer__top{ grid-template-columns: 1fr; }
