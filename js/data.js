@@ -18,14 +18,14 @@ window.NRS_DATA = {
   label: {
     name: "NO RULES SOUND",
     shortName: "NRS",
-    tagline: "Italian hard bounce, hard techno & industrial collective.",
-    taglineEn: "Italian hard bounce, hard techno & industrial collective.",
+    tagline: "Italian Hard Bounce, Hard Techno & Industrial collective.",
+    taglineEn: "Italian Hard Bounce, Hard Techno & Industrial collective.",
     subtagline: "NO RULES, JUST SOUND.\nDESTROY THE SILENCE",
     subtaglineEn: "NO RULES, JUST SOUND.\nDESTROY THE SILENCE",
     location: "Italia",
     // Testo breve "chi siamo" mostrato nella sezione About
-    about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dai leggendari \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo hard techno, industrial, schranz, hard bounce e neo rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica.",
-    aboutEn: "No Rules Sound was born from the energy of car parks turned into dance floors: from legendary underground afterparties, where the only goals were to dance, connect and build a community, the collective grew into what it is today. Through NRS Records we release hard techno, industrial, schranz, hard bounce and neo rave, with one rule: no rules. We believe in a safe, inclusive and unfiltered space where anyone can express themselves freely through music."
+    about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dai leggendari \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo Hard Bounce, Hard Techno, Industrial, Schranz e Neo Rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica.",
+    aboutEn: "No Rules Sound was born from the energy of car parks turned into dance floors: from legendary underground afterparties, where the only goals were to dance, connect and build a community, the collective grew into what it is today. Through NRS Records we release Hard Bounce, Hard Techno, Industrial, Schranz and Neo Rave, with one rule: no rules. We believe in a safe, inclusive and unfiltered space where anyone can express themselves freely through music."
   },
 
   /* ---------- CONTATTI ---------- */
@@ -116,7 +116,7 @@ window.NRS_DATA = {
     },
     {
       catalogNo: "02",
-      name: "Fae نرس",
+      name: "Fae.نرس",
       bookable: true,
       genre: "Oriental Hard Techno",
       bio: "Fondatore e punto di riferimento di No Rules Sound, Fae porta con sé un suono molto caratteristico plasmato dalle sue origini. I suoi set fondono Hard Techno e suoni mediorientali, creando un'esperienza esotica unica che evoca stati di coinvolgimento culturale attraverso vari generi musicali. In passato ha condiviso il palco con artisti come Azyr, Jazzy, Jowi, Øtta, Rikhter e Rebekah. Lasciati trasportare in un viaggio sonoro senza precedenti.",
@@ -140,11 +140,11 @@ window.NRS_DATA = {
     },
     {
       catalogNo: "04",
-      name: "TSK Phonic",
+      name: "TSK Phønič",
       bookable: true,
-      genre: "Hardtechno / Industrial / Raw",
-      bio: "TSK Phonic è un DJ e produttore hard techno/industrial di Padova. La sua musica combina atmosfere oscure e ritmi aggressivi, creando un contrasto emotivo tra dolcezza e rabbia. Ogni suo set è un viaggio unico, un portale in cui luce e oscurità si fondono in pura energia sonora, lasciando l'ascoltatore profondamente cambiato.",
-      bioEn: "TSK Phonic is a DJ and hard techno/industrial producer from Padua. His music combines dark atmospheres and aggressive rhythms, creating an emotional contrast between sweetness and anger. Each set is a unique journey, a portal where light and darkness merge into pure sound energy, leaving the listener profoundly changed.",
+      genre: "Hard Techno / Industrial / Raw",
+      bio: "TSK Phønič è un DJ e produttore hard techno/industrial di Padova. La sua musica combina atmosfere oscure e ritmi aggressivi, creando un contrasto emotivo tra dolcezza e rabbia. Ogni suo set è un viaggio unico, un portale in cui luce e oscurità si fondono in pura energia sonora, lasciando l'ascoltatore profondamente cambiato.",
+      bioEn: "TSK Phønič is a DJ and hard techno/industrial producer from Padua. His music combines dark atmospheres and aggressive rhythms, creating an emotional contrast between sweetness and anger. Each set is a unique journey, a portal where light and darkness merge into pure sound energy, leaving the listener profoundly changed.",
       image: "https://i1.sndcdn.com/avatars-CzCHkcN17xmbutgl-4ycHMQ-t500x500.jpg",
       soundcloud: "https://soundcloud.com/tsk_phonic",
       instagram: "https://www.instagram.com/tsk_phonic/",
@@ -154,7 +154,7 @@ window.NRS_DATA = {
       catalogNo: "05",
       name: "RandeX",
       bookable: true,
-      genre: "Hardtechno",
+      genre: "Hard Techno",
       bio: "Tommaso Randelli, in arte RandeX, è un DJ e producer italiano del 2003. Attivo nella Hard Techno e Hard Bounce, ha iniziato la sua carriera da poco più di un anno, spinto da una passione coltivata fin da piccolo. Nei suoi set unisce aggressività e malinconia, alternando sonorità dure a momenti melodici influenzati da Hard Bounce ed elettronica. Mira a trasformare ogni esibizione in un viaggio intenso e personale.",
       bioEn: "RandeX, stage name of Tommaso Randelli (born in 2003), is an Italian DJ and producer active in the Hard Techno and Hard Bounce scene. He began his career just over a year ago, driven by a passion cultivated since childhood. His sets blend intensity and melancholy, alternating aggressive sounds with melodic moments influenced by Hard Bounce and electronic music. His goal is to turn every performance into an intense and personal journey.",
       image: "https://i1.sndcdn.com/avatars-dh1AhdgQDifAFVV5-fWlryA-t500x500.jpg",
