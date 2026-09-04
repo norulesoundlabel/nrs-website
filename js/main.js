@@ -28,9 +28,9 @@
       listenLabel: "Ascolta", playlistText: "Tutte le tracce NRS in un unico posto. Seguila per non perdere nessuna uscita.",
       comingLabel: "In arrivo", presaveText: "Qui trovi le prossime uscite. Salvale ora e ascoltale appena escono.", stayConnected: "Resta connesso",
       newsletterText: "Nuove uscite, date live e drop in anteprima, dritti in inbox. Niente spam, promesso — no rules, ma questa la rispettiamo.",
-      footerTag: "No Rules Sound — Italian hard bounce, hard techno & industrial collective.",
+      footerTag: "No Rules Sound — Italian Hard Bounce, Hard Techno & Industrial collective.",
       followLabel: "Seguici", rights: "Tutti i diritti riservati.",
-      rosterNumber: "ROSTER Nº", booking: "Booking", bookingArtists: "Artists", productionTeam: "Team Production", presaveNow: "Pre-save ora",
+      rosterNumber: "ROSTER Nº", booking: "Booking", bookable: "Bookable", bookingArtists: "Artists", productionTeam: "Team Production", bookingSupport: "Per disponibilità e booking, scrivici direttamente.", bookingAll: "Richiedi booking", presaveNow: "Pre-save ora",
       noPresave: "Nessuna uscita in pre-save al momento. Torna presto — o seguici sui social per essere avvisato.",
       subscribe: "Iscriviti alla newsletter",
       noSoundcloud: "Account SoundCloud non collegato: aggiungi il link in js/data.js → socials.soundcloud.",
@@ -44,9 +44,9 @@
       listenLabel: "Listen", playlistText: "All NRS tracks in one place. Follow the playlist and never miss a release.",
       comingLabel: "Coming soon", presaveText: "Find the next releases here. Save them now and listen as soon as they drop.", stayConnected: "Stay connected",
       newsletterText: "New releases, live dates and early drops, straight to your inbox. No spam, promise — no rules, but we respect this one.",
-      footerTag: "No Rules Sound — Italian hard bounce, hard techno & industrial collective.",
+      footerTag: "No Rules Sound — Italian Hard Bounce, Hard Techno & Industrial collective.",
       followLabel: "Follow us", rights: "All rights reserved.",
-      rosterNumber: "ROSTER NO.", booking: "Booking", bookingArtists: "Artists", productionTeam: "Production Team", presaveNow: "Pre-save now",
+      rosterNumber: "ROSTER NO.", booking: "Booking", bookable: "Bookable", bookingArtists: "Artists", productionTeam: "Production Team", bookingSupport: "For availability and booking, contact us directly.", bookingAll: "Request booking", presaveNow: "Pre-save now",
       noPresave: "There are no releases available for pre-save right now. Check back soon — or follow us on social media for updates.",
       subscribe: "Join the newsletter",
       noSoundcloud: "SoundCloud is not connected yet: add the link in js/data.js → socials.soundcloud.",
@@ -120,6 +120,11 @@
       top.appendChild(idTag);
 
       card.appendChild(top);
+      if(artist.bookable){
+        const status = el("span", "artist-card__status mono");
+        status.dataset.copyKey = "bookable";
+        card.appendChild(status);
+      }
       card.appendChild(el("h3", "artist-card__name", escapeHtml(artist.name)));
       card.appendChild(el("p", "artist-card__genre mono", escapeHtml(artist.genre)));
       const bio = el("p", "artist-card__bio", escapeHtml(artist.bio));
@@ -151,6 +156,11 @@
       const targetGrid = artist.bookable ? artistsGrid : productionGrid;
       if(targetGrid) targetGrid.appendChild(card);
     });
+  }
+
+  const rosterBookingCta = $("#rosterBookingCta");
+  if(rosterBookingCta && D.contact && D.contact.bookingEmail){
+    rosterBookingCta.href = "mailto:" + D.contact.bookingEmail + "?subject=" + encodeURIComponent("Booking request — No Rules Sound");
   }
 
   /* ---------- AUTO-REFRESH FOTO DA SOUNDCLOUD ----------
@@ -333,8 +343,8 @@
     if($("#aboutText")) $("#aboutText").textContent = currentLang === "en" ? (D.label.aboutEn || D.label.about) : D.label.about;
 
     const description = currentLang === "en"
-      ? "No Rules Sound — Italian hard bounce, hard techno and industrial collective and label. Artists, releases, playlist and contacts."
-      : "No Rules Sound — collettivo ed etichetta hard bounce, hard techno e industrial. Artisti, uscite, playlist e contatti.";
+      ? "No Rules Sound — Italian Hard Bounce, Hard Techno and Industrial collective and label. Artists, releases, playlist and contacts."
+      : "No Rules Sound — collettivo ed etichetta Hard Bounce, Hard Techno e Industrial. Artisti, uscite, playlist e contatti.";
     const metaDescription = document.querySelector('meta[name="description"]');
     const ogDescription = document.querySelector('meta[property="og:description"]');
     if(metaDescription) metaDescription.content = description;
@@ -365,6 +375,19 @@
       navLinks.classList.remove("is-open");
       navToggle.setAttribute("aria-expanded", "false");
     }));
+  }
+
+  /* ---------- NAV: SEZIONE ATTIVA ---------- */
+  const navSectionLinks = [...document.querySelectorAll('.nav__links a[href^="#"]')];
+  if("IntersectionObserver" in window && navSectionLinks.length){
+    const sectionLinkMap = new Map(navSectionLinks.map(link => [link.getAttribute("href"), link]));
+    const navObserver = new IntersectionObserver(entries => {
+      const current = entries.filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if(!current) return;
+      navSectionLinks.forEach(link => link.classList.toggle("is-active", link === sectionLinkMap.get("#" + current.target.id)));
+    }, { rootMargin: "-35% 0px -55%", threshold: [0.01, 0.25, 0.6] });
+    document.querySelectorAll("#top, #roster, #uscite, #playlist, #newsletter, #contatti").forEach(section => navObserver.observe(section));
   }
 
   /* ---------- MICRO-ANIMAZIONI ---------- */
