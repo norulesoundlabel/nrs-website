@@ -54,6 +54,26 @@
     }
   };
   const requestedLang = new URLSearchParams(location.search).get("lang");
+  Object.assign(COPY.it, {
+    demoEyebrow: "Il prossimo suono è il tuo", demoCopy: "Hai una traccia che non vuole stare in silenzio? Faccela ascoltare.",
+    demoHint: "Link SoundCloud pubblico o privato. Per le tracce private, copia il link segreto completo da «Condividi».",
+    demoFormTitle: "01 / La tua demo", demoArtist: "Nome artista", demoTrack: "Titolo della traccia", demoLink: "Link SoundCloud",
+    demoLinkHelp: "Il link privato deve includere il codice segreto. Non verrà pubblicato sul sito.",
+    demoMessage: "Due parole sulla traccia (facoltativo)", demoSubmit: "Prepara la mail ↗",
+    demoDelivery: "Si aprirà la tua app email con la demo pronta da inviare. Nessun invio automatico.",
+    demoInvalid: "Inserisci un link HTTPS di SoundCloud valido.",
+    demoReady: "Mail preparata. Completa l’invio nella tua app email. Se non si apre, scrivi all’indirizzo qui sopra con il link della demo."
+  });
+  Object.assign(COPY.en, {
+    demoEyebrow: "Your sound comes next", demoCopy: "Got a track that refuses to stay quiet? Let us hear it.",
+    demoHint: "Public or private SoundCloud link. For private tracks, copy the full secret link from ‘Share’.",
+    demoFormTitle: "01 / Your demo", demoArtist: "Artist name", demoTrack: "Track title", demoLink: "SoundCloud link",
+    demoLinkHelp: "Private links must include the secret code. Your link will not be published on the site.",
+    demoMessage: "A few words about your track (optional)", demoSubmit: "Prepare email ↗",
+    demoDelivery: "Your email app will open with the demo ready to send. Nothing is sent automatically.",
+    demoInvalid: "Enter a valid HTTPS SoundCloud link.",
+    demoReady: "Email prepared. Send it from your email app. If it does not open, email the address above with your demo link."
+  });
   let currentLang = requestedLang === "en" ? "en" : "it";
   const t = key => COPY[currentLang][key] || COPY.it[key] || key;
 
@@ -364,6 +384,28 @@
   applyLanguage(currentLang, false);
 
   /* ---------- NAV MOBILE TOGGLE ---------- */
+  const demoForm = $("#demoForm");
+  if(demoForm){
+    const linkInput = demoForm.elements.link;
+    linkInput.addEventListener("input", () => linkInput.setCustomValidity(""));
+    demoForm.addEventListener("submit", event => {
+      event.preventDefault();
+      let link;
+      try { link = new URL(linkInput.value.trim()); } catch { /* validated below */ }
+      if(!link || link.protocol !== "https:" || !["soundcloud.com", "www.soundcloud.com", "on.soundcloud.com"].includes(link.hostname) || link.pathname === "/"){
+        linkInput.setCustomValidity(t("demoInvalid"));
+        linkInput.reportValidity();
+        return;
+      }
+      const fields = new FormData(demoForm);
+      const body = ["NRS — DEMO DROP", "", "Artist: " + fields.get("artist"), "Email: " + fields.get("email"), "Track: " + fields.get("track"), "SoundCloud: " + link.href, "", fields.get("message")].join("\n");
+      $("#demoStatus").dataset.i18n = "demoReady";
+      $("#demoStatus").textContent = t("demoReady");
+      location.href = "mailto:nrsbookingofficial@gmail.com?subject=" + encodeURIComponent("DEMO — " + fields.get("artist") + " — " + fields.get("track")) + "&body=" + encodeURIComponent(body);
+    });
+  }
+
+  /* ---------- NAV MOBILE TOGGLE ---------- */
   const navToggle = $("#navToggle");
   const navLinks = $("#navLinks");
   if(navToggle && navLinks){
@@ -387,7 +429,7 @@
       if(!current) return;
       navSectionLinks.forEach(link => link.classList.toggle("is-active", link === sectionLinkMap.get("#" + current.target.id)));
     }, { rootMargin: "-35% 0px -55%", threshold: [0.01, 0.25, 0.6] });
-    document.querySelectorAll("#top, #roster, #uscite, #playlist, #newsletter, #contatti").forEach(section => navObserver.observe(section));
+    document.querySelectorAll("#top, #roster, #uscite, #playlist, #demo-drop, #newsletter, #contatti").forEach(section => navObserver.observe(section));
   }
 
   /* ---------- MICRO-ANIMAZIONI ---------- */
@@ -401,7 +443,7 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0 });
     document.querySelectorAll(".section, .artist-card, .about").forEach(node => {
       node.classList.add("reveal");
       revealObserver.observe(node);
