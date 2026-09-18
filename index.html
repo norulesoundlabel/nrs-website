@@ -10,6 +10,17 @@
 <meta property="og:title" content="NO RULES SOUND">
 <meta property="og:description" content="Italian Hard Bounce, Hard Techno &amp; Industrial collective.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://norulesound.com/">
+<meta property="og:site_name" content="No Rules Sound">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="No Rules Sound — Artists, releases & demo drop">
+<meta name="twitter:description" content="Hard Bounce, Hard Techno e Industrial. Scopri gli artisti NRS, ascolta le uscite e proponi la tua demo.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://norulesound.com/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","@id":"https://norulesound.com/#organization","name":"No Rules Sound","alternateName":"NRS","url":"https://norulesound.com/","description":"Collettivo musicale ed etichetta Hard Bounce, Hard Techno e Industrial.","sameAs":["https://soundcloud.com/no-rules-sound-label","https://www.instagram.com/norulesound/","https://open.spotify.com/artist/4ZYpceTd0FQmD7bLuEDhSO","https://www.tiktok.com/@no.rules.sound"]}
+</script>
 
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +40,7 @@
     <a href="#roster">Roster</a>
     <a href="#uscite" data-i18n="navReleases">Uscite</a>
     <a href="#playlist">Playlist</a>
+    <a href="#demo-drop">Demo Drop</a>
     <a href="#newsletter">Newsletter</a>
     <a href="#contatti" data-i18n="navContacts">Contatti</a>
   </nav>
@@ -57,7 +69,7 @@ DESTROY THE SILENCE</p>
 
 <!-- ============ ABOUT ============ -->
 <section class="about">
-  <p class="about__text" id="aboutText">—</p>
+  <p class="about__text" id="aboutText">No Rules Sound è un collettivo musicale e un’etichetta: Hard Bounce, Hard Techno e Industrial. Scopri il roster, ascolta le uscite NRS Records, richiedi un booking e proponi la tua musica con Demo Drop.</p>
   <div class="about__socials" id="socialRow"></div>
 </section>
 
@@ -110,6 +122,34 @@ DESTROY THE SILENCE</p>
     <p class="split__text split__text--presave" data-i18n="presaveText">Qui trovi le prossime uscite. Salvale ora e ascoltale appena escono.</p>
     <div id="presaveBox" class="presave-box"><!-- generato via JS --></div>
   </div>
+</section>
+
+<!-- ============ DEMO DROP ============ -->
+<section class="section demo-drop" id="demo-drop" aria-labelledby="demoTitle">
+  <div class="demo-drop__intro">
+    <p class="eyebrow mono" data-i18n="demoEyebrow">Il prossimo suono è il tuo</p>
+    <h2 class="section__title" id="demoTitle">DEMO<br><span>DROP.</span></h2>
+    <div class="demo-signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <p class="demo-drop__copy" data-i18n="demoCopy">Hai una traccia che non vuole stare in silenzio? Faccela ascoltare.</p>
+    <p class="mono demo-drop__genres">HARD BOUNCE / HARD TECHNO / INDUSTRIAL</p>
+    <p class="demo-drop__hint" data-i18n="demoHint">Link SoundCloud pubblico o privato. Per le tracce private, copia il link segreto completo da «Condividi».</p>
+  </div>
+  <form class="demo-form" id="demoForm">
+    <p class="mono demo-form__heading" data-i18n="demoFormTitle">01 / La tua demo</p>
+    <div class="demo-form__row">
+      <label><span data-i18n="demoArtist">Nome artista</span><input name="artist" required maxlength="80" autocomplete="nickname"></label>
+      <label><span>Email</span><input name="email" type="email" required maxlength="160" autocomplete="email"></label>
+    </div>
+    <label><span data-i18n="demoTrack">Titolo della traccia</span><input name="track" required maxlength="120"></label>
+    <label><span data-i18n="demoLink">Link SoundCloud</span><input name="link" type="url" required maxlength="600" placeholder="https://soundcloud.com/…" aria-describedby="demoLinkHelp"></label>
+    <p class="demo-form__note" id="demoLinkHelp" data-i18n="demoLinkHelp">Il link privato deve includere il codice segreto. Non verrà pubblicato sul sito.</p>
+    <label><span data-i18n="demoMessage">Due parole sulla traccia (facoltativo)</span><textarea name="message" rows="3" maxlength="1000"></textarea></label>
+    <button class="btn btn--primary" type="submit" data-i18n="demoSubmit">Prepara la mail ↗</button>
+    <p class="demo-form__note" data-i18n="demoDelivery">Si aprirà la tua app email con la demo pronta da inviare. Nessun invio automatico.</p>
+    <a class="demo-form__address mono" href="mailto:nrsbookingofficial@gmail.com">nrsbookingofficial@gmail.com</a>
+    <p class="demo-form__status" id="demoStatus" role="status"></p>
+    <noscript>Scrivi a nrsbookingofficial@gmail.com con nome artista e link SoundCloud.</noscript>
+  </form>
 </section>
 
 <!-- ============ NEWSLETTER ============ -->
