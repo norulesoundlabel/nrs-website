@@ -149,19 +149,6 @@ p{ margin:0; }
   min-width: 76px;
   height: 42px;
 }
-.nav__logo-text{ position:relative; z-index:1; }
-.nav__logo-canvas{
-  position: absolute; inset: -6px 0;
-  width: 100%; height: calc(100% + 12px);
-  opacity: 0;
-  transition: opacity .4s ease;
-  pointer-events: none;
-}
-.nav__logo.has-3d-logo .nav__logo-canvas{ opacity: 1; pointer-events: auto; }
-.nav__logo.has-3d-logo .nav__logo-text{
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-}
 .nav__logo::before,
 .nav__logo::after{
   content: attr(data-text);
@@ -172,8 +159,6 @@ p{ margin:0; }
 }
 .nav__logo::before{ color: var(--red); }
 .nav__logo::after{ color: #00c8ff; }
-.nav__logo.has-3d-logo::before,
-.nav__logo.has-3d-logo::after{ display:none; }
 @media(prefers-reduced-motion:no-preference){
   .nav__logo::before{ animation: logo-glitch-a 9s infinite; }
   .nav__logo::after{ animation: logo-glitch-b 9s infinite; }
