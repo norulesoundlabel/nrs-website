@@ -123,14 +123,16 @@
 
       const monogram = el("div", "artist-card__mono", escapeHtml((artist.name || "?").trim().charAt(0)));
       if(artist.image){
+        const frame = el("div", "artist-card__photo-frame");
         const img = document.createElement("img");
         img.src = artist.image;
         img.alt = artist.name || "";
         img.loading = "lazy";
         img.className = "artist-card__photo";
         // Se l'immagine non si carica (link cambiato/rimosso), torna al monogramma: mai un'icona rotta.
-        img.onerror = function(){ this.replaceWith(monogram); };
-        top.appendChild(img);
+        img.onerror = function(){ frame.replaceWith(monogram); };
+        frame.appendChild(img);
+        top.appendChild(frame);
         if(artist.soundcloud) photoRefreshTargets.push({ img, soundcloudUrl: artist.soundcloud });
       } else {
         top.appendChild(monogram);
@@ -225,7 +227,7 @@
       iframe.style.border = "0";
       iframe.allow = "autoplay";
       iframe.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(tracksUrl) +
-        "&color=%23ff6a13&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false";
+        "&color=%23ff2a2a&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false";
       releasesWrap.appendChild(iframe);
     } else {
       const message = el("p", "split__text");
@@ -448,6 +450,141 @@
       node.classList.add("reveal");
       revealObserver.observe(node);
     });
+    document.querySelectorAll(".section__title").forEach(node => {
+      node.classList.add("reveal");
+      revealObserver.observe(node);
+    });
+  }
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pointerFine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  /* ---------- HERO: GRIGLIA 3D ANIMATA (canvas, no dipendenze) ---------- */
+  const heroCanvas = $("#heroCanvas");
+  if(heroCanvas && heroCanvas.getContext){
+    const ctx = heroCanvas.getContext("2d");
+    const heroSection = $(".hero");
+    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let rafId = null, t0 = 0;
+    let parX = 0, parY = 0; // parallax offset target
+    let parXc = 0, parYc = 0; // parallax offset current (eased)
+
+    const resize = () => {
+      const rect = heroSection.getBoundingClientRect();
+      w = rect.width; h = rect.height;
+      heroCanvas.width = Math.round(w * dpr);
+      heroCanvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const drawGrid = (time) => {
+      ctx.clearRect(0, 0, w, h);
+      const horizonY = h * 0.42 + parYc * 14;
+      const vanishX = w / 2 + parXc * 22;
+      const rows = 16;
+      const speed = reduceMotion ? 0 : time * 0.00006;
+      ctx.strokeStyle = "rgba(255,70,70,0.9)";
+      ctx.shadowColor = "rgba(255,42,42,0.8)";
+      ctx.shadowBlur = 6;
+      ctx.lineWidth = 1.1;
+      // linee orizzontali (profondità)
+      for(let i = 0; i < rows; i++){
+        const p = ((i / rows) + speed) % 1;
+        const y = horizonY + Math.pow(p, 2.2) * (h - horizonY);
+        const spread = p * w * 0.9;
+        ctx.globalAlpha = 0.1 + p * 0.55;
+        ctx.beginPath();
+        ctx.moveTo(vanishX - spread, y);
+        ctx.lineTo(vanishX + spread, y);
+        ctx.stroke();
+      }
+      // linee radiali (convergenza verso il punto di fuga)
+      const cols = 11;
+      ctx.globalAlpha = 0.3;
+      for(let i = 0; i <= cols; i++){
+        const fx = (i / cols - 0.5) * w * 1.6;
+        ctx.beginPath();
+        ctx.moveTo(vanishX, horizonY);
+        ctx.lineTo(vanishX + fx, h);
+        ctx.stroke();
+      }
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+    };
+
+    const loop = (time) => {
+      parXc += (parX - parXc) * 0.06;
+      parYc += (parY - parYc) * 0.06;
+      drawGrid(time - t0);
+      rafId = requestAnimationFrame(loop);
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(resize);
+
+    if(reduceMotion){
+      drawGrid(0); // frame statico, nessun loop
+    } else {
+      rafId = requestAnimationFrame((time) => { t0 = time; loop(time); });
+      document.addEventListener("visibilitychange", () => {
+        if(document.hidden && rafId){ cancelAnimationFrame(rafId); rafId = null; }
+        else if(!document.hidden && !rafId){ rafId = requestAnimationFrame((time) => { t0 = time; loop(time); }); }
+      });
+    }
+
+    if(pointerFine){
+      heroSection.addEventListener("mousemove", (e) => {
+        const rect = heroSection.getBoundingClientRect();
+        parX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        parY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      });
+      heroSection.addEventListener("mouseleave", () => { parX = 0; parY = 0; });
+    }
+  }
+
+  /* ---------- HERO: TILT 3D DEL TITOLO ---------- */
+  if(pointerFine && !reduceMotion){
+    const heroSection = $(".hero");
+    const heroInner = $(".hero__inner");
+    if(heroSection && heroInner){
+      heroSection.addEventListener("mousemove", (e) => {
+        const rect = heroSection.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        heroInner.style.setProperty("--tilt-x", (px * 12).toFixed(2) + "deg");
+        heroInner.style.setProperty("--tilt-y", (-py * 9).toFixed(2) + "deg");
+      });
+      heroSection.addEventListener("mouseleave", () => {
+        heroInner.style.setProperty("--tilt-x", "0deg");
+        heroInner.style.setProperty("--tilt-y", "0deg");
+      });
+    }
+  }
+
+  /* ---------- ROSTER: TILT 3D SULLE CARD ---------- */
+  if(pointerFine && !reduceMotion){
+    document.addEventListener("pointermove", (e) => {
+      const card = e.target.closest && e.target.closest(".artist-card");
+      document.querySelectorAll(".artist-card.is-tilting").forEach(c => {
+        if(c !== card){ c.classList.remove("is-tilting"); }
+      });
+      if(!card) return;
+      const rect = card.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width;
+      const py = (e.clientY - rect.top) / rect.height;
+      const rx = (px - 0.5) * 18;
+      const ry = -(py - 0.5) * 18;
+      card.style.setProperty("--rx", rx.toFixed(2) + "deg");
+      card.style.setProperty("--ry", ry.toFixed(2) + "deg");
+      card.style.setProperty("--px", (px * 100).toFixed(1) + "%");
+      card.style.setProperty("--py", (py * 100).toFixed(1) + "%");
+      card.classList.add("is-tilting");
+    });
+    document.addEventListener("pointerleave", (e) => {
+      const card = e.target.closest && e.target.closest(".artist-card");
+      if(card) card.classList.remove("is-tilting");
+    }, true);
   }
 
 })();
