@@ -332,8 +332,17 @@
   }
 
   /* ---------- CONTATTI / FOOTER ---------- */
-  if($("#footerEmail")) $("#footerEmail").textContent = (D.contact && D.contact.email) || "—";
-  if($("#footerBooking")) $("#footerBooking").textContent = (D.contact && D.contact.bookingEmail) || "—";
+  function contactLink(selector, address, subject){
+    const container = $(selector);
+    if(!container) return;
+    if(!address){ container.textContent = "—"; return; }
+    const link = document.createElement("a");
+    link.textContent = address;
+    link.href = "mailto:" + address + "?subject=" + encodeURIComponent(subject);
+    container.replaceChildren(link);
+  }
+  contactLink("#footerEmail", D.contact && D.contact.email, "No Rules Sound — Info");
+  contactLink("#footerBooking", D.contact && D.contact.bookingEmail, "Booking request — No Rules Sound");
   if($("#year")) $("#year").textContent = new Date().getFullYear();
 
   /* ---------- LINGUA IT / EN ---------- */
@@ -403,7 +412,7 @@
       const body = ["NRS — DEMO DROP", "", "Artist: " + fields.get("artist"), "Email: " + fields.get("email"), "Track: " + fields.get("track"), "SoundCloud: " + link.href, "", fields.get("message")].join("\n");
       $("#demoStatus").dataset.i18n = "demoReady";
       $("#demoStatus").textContent = t("demoReady");
-      location.href = "mailto:nrsbookingofficial@gmail.com?subject=" + encodeURIComponent("DEMO — " + fields.get("artist") + " — " + fields.get("track")) + "&body=" + encodeURIComponent(body);
+      location.href = "mailto:" + D.contact.bookingEmail + "?subject=" + encodeURIComponent("DEMO — " + fields.get("artist") + " — " + fields.get("track")) + "&body=" + encodeURIComponent(body);
     });
   }
 
