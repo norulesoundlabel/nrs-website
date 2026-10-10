@@ -7,17 +7,25 @@
 (function(){
   const D = window.NRS_DATA;
   if(!D){ console.error("NRS_DATA non trovato: controlla che data.js sia caricato prima di main.js"); return; }
+  const S = window.NRS_SECURITY;
+  if(!S) return;
+  // Reject unsafe schemes before any content is rendered.
+  Object.keys(D.socials || {}).forEach(key => { D.socials[key] = S.httpsURL(D.socials[key]); });
+  (D.roster || []).forEach(artist => {
+    ["soundcloud", "instagram", "beatport", "image"].forEach(key => { artist[key] = S.httpsURL(artist[key]); });
+  });
+  if(D.presave){ D.presave.url = S.httpsURL(D.presave.url); D.presave.cover = S.httpsURL(D.presave.cover); }
+  if(D.newsletter) D.newsletter.fallbackUrl = S.httpsURL(D.newsletter.fallbackUrl);
+  if(D.contact){ D.contact.email = S.email(D.contact.email); D.contact.bookingEmail = S.email(D.contact.bookingEmail); }
 
   const $ = (sel, ctx) => (ctx || document).querySelector(sel);
   const el = (tag, cls, html) => {
     const e = document.createElement(tag);
     if(cls) e.className = cls;
-    if(html !== undefined) e.innerHTML = html;
+    if(html !== undefined) e.textContent = html;
     return e;
   };
-  const escapeHtml = (s) => (s || "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
-  }[c]));
+  const escapeHtml = (s) => String(s || ""); // Content is rendered with textContent.
 
   const COPY = {
     it: {
@@ -111,7 +119,6 @@
   /* ---------- ROSTER ---------- */
   const artistsGrid = $("#artistsGrid");
   const productionGrid = $("#productionGrid");
-  const photoRefreshTargets = []; // { img, soundcloudUrl } — usato più sotto per l'auto-refresh foto da SoundCloud
   if((artistsGrid || productionGrid) && Array.isArray(D.roster)){
     D.roster.forEach(artist => {
       const card = el("article", "artist-card");
@@ -133,7 +140,9 @@
         img.onerror = function(){ frame.replaceWith(monogram); };
         frame.appendChild(img);
         top.appendChild(frame);
-        if(artist.soundcloud) photoRefreshTargets.push({ img, soundcloudUrl: artist.soundcloud });
+        img.decoding = "async";
+        img.width = 500; img.height = 500;
+        // Use the curated photo; do not issue one oEmbed request per artist/visit.
       } else {
         top.appendChild(monogram);
       }
@@ -185,31 +194,6 @@
     rosterBookingCta.href = "mailto:" + D.contact.bookingEmail + "?subject=" + encodeURIComponent("Booking request — No Rules Sound");
   }
 
-  /* ---------- AUTO-REFRESH FOTO DA SOUNDCLOUD ----------
-     Ad ogni visita, il sito prova a chiedere a SoundCloud (via il suo endpoint
-     ufficiale e gratuito "oEmbed", nessuna chiave richiesta) la foto profilo
-     più recente di ogni artista, e la sostituisce a quella salvata in data.js.
-     Se per qualsiasi motivo la richiesta fallisce (rete assente, endpoint
-     irraggiungibile, ecc.) non succede nulla di visibile: resta semplicemente
-     la foto già presente in data.js. Le bio restano invece manuali: l'endpoint
-     di SoundCloud non fornisce quel testo. */
-  function upgradeSoundcloudImage(url){
-    // Le miniature restituite da oEmbed sono spesso a bassa risoluzione (…-large.jpg,
-    // cioè 100x100): se possibile chiediamo la versione più grande allo stesso host.
-    return url ? url.replace(/-large\.jpg/i, "-t500x500.jpg") : url;
-  }
-  photoRefreshTargets.forEach(({ img, soundcloudUrl }) => {
-    const endpoint = "https://soundcloud.com/oembed?format=json&url=" + encodeURIComponent(soundcloudUrl);
-    fetch(endpoint)
-      .then(res => res.ok ? res.json() : null)
-      .then(data => {
-        if(data && data.thumbnail_url && img.isConnected){
-          img.src = upgradeSoundcloudImage(data.thumbnail_url);
-        }
-      })
-      .catch(() => { /* silenzioso: resta la foto già in data.js */ });
-  });
-
   /* ---------- RELEASES (player live, sempre aggiornato da SoundCloud) ----------
      Non legge più js/data.js: mostra sempre i brani reali più recenti
      caricati sull'account SoundCloud della label (socials.soundcloud),
@@ -242,15 +226,13 @@
     if(!url) return null;
     try{
       const u = new URL(url);
-      if(!u.hostname.includes("spotify.com")) return null;
-      if(u.pathname.includes("/embed/")) return url; // già un embed
-      return "https://open.spotify.com/embed" + u.pathname + u.search;
+      return S.spotify(u.href);
     } catch(e){ return null; }
   }
 
   const spotifyWrap = $("#spotifyEmbedWrap");
   if(spotifyWrap){
-    const embedSrc = D.spotifyPlaylistEmbedUrl || toSpotifyEmbedSrc(D.socials && D.socials.spotify);
+    const embedSrc = toSpotifyEmbedSrc(D.spotifyPlaylistEmbedUrl || (D.socials && D.socials.spotify));
     if(embedSrc){
       const iframe = document.createElement("iframe");
       iframe.src = embedSrc;
@@ -324,9 +306,13 @@
     } else {
       const p = el("p", "nl-fallback");
       const email = (D.contact && D.contact.email) || "";
-      p.innerHTML = email
-        ? `Newsletter non ancora collegata: scrivici intanto a <a href="mailto:${escapeHtml(email)}?subject=Newsletter">${escapeHtml(email)}</a> per essere aggiunto manualmente.`
-        : "Newsletter non ancora configurata (js/data.js → newsletter).";
+      p.textContent = "Newsletter: ";
+      if(email){
+        const link = document.createElement("a");
+        link.textContent = email;
+        link.href = "mailto:" + email + "?subject=Newsletter";
+        p.appendChild(link);
+      }
       nlWrap.appendChild(p);
     }
   }
@@ -393,6 +379,11 @@
     button.addEventListener("click", () => applyLanguage(button.dataset.lang, true));
   });
   applyLanguage(currentLang, false);
+  document.querySelectorAll('a[target="_blank"]').forEach(link => { link.rel = "noopener noreferrer"; });
+  document.querySelectorAll("iframe").forEach(frame => {
+    frame.title = frame.src.includes("spotify") ? "Spotify — No Rules Sound" : frame.src.includes("soundcloud") ? "SoundCloud — No Rules Sound" : "Newsletter";
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+  });
 
   /* ---------- NAV MOBILE TOGGLE ---------- */
   const demoForm = $("#demoForm");
@@ -403,11 +394,12 @@
       event.preventDefault();
       let link;
       try { link = new URL(linkInput.value.trim()); } catch { /* validated below */ }
-      if(!link || link.protocol !== "https:" || !["soundcloud.com", "www.soundcloud.com", "on.soundcloud.com"].includes(link.hostname) || link.pathname === "/"){
+      if(!link || !S.httpsURL(link.href, ["soundcloud.com", "www.soundcloud.com", "on.soundcloud.com"]) || link.pathname === "/"){
         linkInput.setCustomValidity(t("demoInvalid"));
         linkInput.reportValidity();
         return;
       }
+      if(!demoForm.reportValidity() || !D.contact.bookingEmail) return;
       const fields = new FormData(demoForm);
       const body = ["NRS — DEMO DROP", "", "Artist: " + fields.get("artist"), "Email: " + fields.get("email"), "Track: " + fields.get("track"), "SoundCloud: " + link.href, "", fields.get("message")].join("\n");
       $("#demoStatus").dataset.i18n = "demoReady";
@@ -420,6 +412,14 @@
   const navToggle = $("#navToggle");
   const navLinks = $("#navLinks");
   if(navToggle && navLinks){
+    navToggle.setAttribute("aria-controls", "navLinks");
+    document.addEventListener("keydown", event => {
+      if(event.key === "Escape" && navLinks.classList.contains("is-open")){
+        navLinks.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.focus();
+      }
+    });
     navToggle.addEventListener("click", () => {
       const open = navLinks.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", open ? "true" : "false");
@@ -535,11 +535,23 @@
     if(reduceMotion){
       drawGrid(0); // frame statico, nessun loop
     } else {
-      rafId = requestAnimationFrame((time) => { t0 = time; loop(time); });
-      document.addEventListener("visibilitychange", () => {
-        if(document.hidden && rafId){ cancelAnimationFrame(rafId); rafId = null; }
-        else if(!document.hidden && !rafId){ rafId = requestAnimationFrame((time) => { t0 = time; loop(time); }); }
-      });
+      let inView = true;
+      const syncAnimation = () => {
+        if(document.hidden || !inView){
+          if(rafId) cancelAnimationFrame(rafId);
+          rafId = null;
+        } else if(!rafId){
+          rafId = requestAnimationFrame((time) => { t0 = time; loop(time); });
+        }
+      };
+      document.addEventListener("visibilitychange", syncAnimation);
+      if("IntersectionObserver" in window){
+        new IntersectionObserver(entries => {
+          inView = entries[0].isIntersecting;
+          syncAnimation();
+        }).observe(heroSection);
+      }
+      syncAnimation();
     }
 
     if(pointerFine){
