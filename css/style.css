@@ -826,3 +826,8 @@ p{ margin:0; }
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
+
+/* Keyboard accessibility: skip navigation without changing the default layout. */
+.skip-link{position:fixed;top:0;left:1rem;z-index:9999;transform:translateY(-150%);background:#ece7db;color:#0c0b09;padding:.7rem 1rem;font:700 1rem system-ui,sans-serif;text-decoration:none}
+.skip-link:focus{transform:translateY(0)}
+#main-content{display:block}
