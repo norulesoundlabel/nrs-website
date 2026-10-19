@@ -3,8 +3,8 @@
   function httpsURL(value, hosts){
     try {
       const url = new URL(value);
-      if(url.protocol !== "https:" || url.username || url.password || url.port) return "";
-      if(hosts && !hosts.includes(url.hostname)) return "";
+      if(url.protocol !== "https:" || url.username || url.password || url.port || !url.hostname || /[\u0000-\u001F\u007F]/.test(String(value))) return "";
+      if(hosts && !hosts.includes(url.hostname.toLowerCase())) return "";
       return url.href;
     } catch { return ""; }
   }
