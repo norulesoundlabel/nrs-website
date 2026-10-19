@@ -338,7 +338,6 @@
   /* ---------- LINGUA IT / EN ---------- */
   function applyLanguage(lang, updateUrl){
     currentLang = lang === "en" ? "en" : "it";
-    document.documentElement.lang = currentLang;
 
     document.querySelectorAll("[data-i18n]").forEach(node => {
       node.textContent = t(node.dataset.i18n);
@@ -372,14 +371,6 @@
     if($("#heroEyebrow")) $("#heroEyebrow").textContent = currentLang === "en" ? (D.label.taglineEn || D.label.tagline) : D.label.tagline;
     if($("#heroSub")) $("#heroSub").textContent = currentLang === "en" ? (D.label.subtaglineEn || D.label.subtagline) : D.label.subtagline;
     if($("#aboutText")) $("#aboutText").textContent = currentLang === "en" ? (D.label.aboutEn || D.label.about) : D.label.about;
-
-    const description = currentLang === "en"
-      ? "No Rules Sound — Italian Hard Bounce, Hard Techno and Industrial collective and label. Artists, releases, playlist and contacts."
-      : "No Rules Sound — collettivo ed etichetta Hard Bounce, Hard Techno e Industrial. Artisti, uscite, playlist e contatti.";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if(metaDescription) metaDescription.content = description;
-    if(ogDescription) ogDescription.content = description;
 
     if(updateUrl){
       const url = new URL(location.href);
