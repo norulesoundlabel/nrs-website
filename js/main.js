@@ -12,9 +12,10 @@
   // Reject unsafe schemes before any content is rendered.
   Object.keys(D.socials || {}).forEach(key => { D.socials[key] = S.httpsURL(D.socials[key]); });
   (D.roster || []).forEach(artist => {
-    ["soundcloud", "instagram", "beatport", "image"].forEach(key => { artist[key] = S.httpsURL(artist[key]); });
+    ["soundcloud", "instagram", "beatport", "spotify"].forEach(key => { artist[key] = S.httpsURL(artist[key]); });
+    artist.image = /^assets\/rebrand\/[a-z0-9-]+\.webp$/.test(artist.image || "") ? artist.image : S.httpsURL(artist.image);
   });
-  if(D.presave){ D.presave.url = S.httpsURL(D.presave.url); D.presave.cover = S.httpsURL(D.presave.cover); }
+  D.presaves = (Array.isArray(D.presaves) ? D.presaves : []).map(x => ({...x, url: S.httpsURL(x.url), cover: S.httpsURL(x.cover)}));
   if(D.newsletter) D.newsletter.fallbackUrl = S.httpsURL(D.newsletter.fallbackUrl);
   if(D.contact){ D.contact.email = S.email(D.contact.email); D.contact.bookingEmail = S.email(D.contact.bookingEmail); }
 
@@ -36,7 +37,7 @@
       listenLabel: "Ascolta", playlistText: "Tutte le tracce NRS in un unico posto. Seguila per non perdere nessuna uscita.",
       comingLabel: "In arrivo", presaveText: "Qui trovi le prossime uscite. Salvale ora e ascoltale appena escono.", stayConnected: "Resta connesso",
       newsletterText: "Nuove uscite, date live e drop in anteprima, dritti in inbox. Niente spam, promesso — no rules, ma questa la rispettiamo.",
-      footerTag: "No Rules Sound — Italian Hard Bounce, Hard Techno & Industrial collective.",
+      footerTag: "No Rules Sound — Italian Hard Bounce & Hard Techno collective.",
       followLabel: "Seguici", rights: "Tutti i diritti riservati.",
       rosterNumber: "ROSTER Nº", booking: "Booking", bookable: "Bookable", bookingArtists: "Artists", productionTeam: "Team Production", bookingSupport: "Per disponibilità e booking, scrivici direttamente.", bookingAll: "Richiedi booking", presaveNow: "Pre-save ora",
       noPresave: "Nessuna uscita in pre-save al momento. Torna presto — o seguici sui social per essere avvisato.",
@@ -52,7 +53,7 @@
       listenLabel: "Listen", playlistText: "All NRS tracks in one place. Follow the playlist and never miss a release.",
       comingLabel: "Coming soon", presaveText: "Find the next releases here. Save them now and listen as soon as they drop.", stayConnected: "Stay connected",
       newsletterText: "New releases, live dates and early drops, straight to your inbox. No spam, promise — no rules, but we respect this one.",
-      footerTag: "No Rules Sound — Italian Hard Bounce, Hard Techno & Industrial collective.",
+      footerTag: "No Rules Sound — Italian Hard Bounce & Hard Techno collective.",
       followLabel: "Follow us", rights: "All rights reserved.",
       rosterNumber: "ROSTER NO.", booking: "Booking", bookable: "Bookable", bookingArtists: "Artists", productionTeam: "Production Team", bookingSupport: "For availability and booking, contact us directly.", bookingAll: "Request booking", presaveNow: "Pre-save now",
       noPresave: "There are no releases available for pre-save right now. Check back soon — or follow us on social media for updates.",
@@ -90,7 +91,7 @@
   if ($("#heroTitle")) $("#heroTitle").textContent = D.label.name || "NO RULES SOUND";
   if ($("#heroSub")) $("#heroSub").textContent = D.label.subtagline || "";
   if ($("#aboutText")) $("#aboutText").textContent = D.label.about || "";
-  document.title = (D.label.name || "NO RULES SOUND") + " — Hard Bounce / Hard Techno / Industrial Collective";
+  document.title = (D.label.name || "NO RULES SOUND") + " — Hard Bounce / Hard Techno Collective";
 
   /* ---------- SOCIAL PILLS (about + footer) ---------- */
   function buildSocialRow(container){
@@ -121,7 +122,7 @@
   const productionGrid = $("#productionGrid");
   if((artistsGrid || productionGrid) && Array.isArray(D.roster)){
     D.roster.forEach(artist => {
-      const card = el("article", "artist-card");
+      const card = el("article", artist.bookable ? "artist-card" : "artist-card producer-card");
 
       const top = el("div", "");
       top.style.display = "flex";
@@ -174,6 +175,10 @@
       }
       if(artist.beatport){
         const a = el("a", "", "Beatport"); a.href = artist.beatport; a.target="_blank"; a.rel="noopener";
+        links.appendChild(a);
+      }
+      if(artist.spotify){
+        const a = el("a", "", "Spotify"); a.href=artist.spotify; a.target="_blank"; a.rel="noopener noreferrer";
         links.appendChild(a);
       }
       if(links.children.length) card.appendChild(links);
@@ -252,10 +257,10 @@
   /* ---------- PRE-SAVE (visibile da solo finché la data di uscita non è passata) ---------- */
   const presaveBox = $("#presaveBox");
   if(presaveBox){
-    const p = D.presave || {};
-    const releaseDate = p.releaseDate ? new Date(p.releaseDate + "T23:59:59") : null;
-    const isUpcoming = p.url && (!releaseDate || (!isNaN(releaseDate) && releaseDate.getTime() >= Date.now()));
-    if(isUpcoming){
+    const ts = x => { const d = x.releaseDate ? new Date(x.releaseDate + "T23:59:59") : null; return d && !isNaN(d) ? d.getTime() : Infinity; };
+    const upcoming = D.presaves.filter(x => x.url && ts(x) >= Date.now()).sort((a, b) => ts(a) - ts(b));
+    const p = upcoming[0];
+    if(p){
       const meta = el("div", "presave-box__meta");
       if(p.cover){
         const cover = document.createElement("img");
@@ -272,9 +277,12 @@
       a.href = p.url; a.target = "_blank"; a.rel = "noopener";
       presaveBox.appendChild(a);
     } else {
-      const message = el("p", "presave-box__empty");
-      message.dataset.copyKey = "noPresave";
-      presaveBox.appendChild(message);
+      const meta = el("div", "presave-box__meta");
+      meta.appendChild(el("p", "presave-box__track mono", "???"));
+      presaveBox.appendChild(meta);
+      const ph = el("span", "btn btn--primary btn--full is-disabled", "???");
+      ph.setAttribute("aria-disabled", "true");
+      presaveBox.appendChild(ph);
     }
   }
 
@@ -360,8 +368,8 @@
     if($("#aboutText")) $("#aboutText").textContent = currentLang === "en" ? (D.label.aboutEn || D.label.about) : D.label.about;
 
     const description = currentLang === "en"
-      ? "No Rules Sound — Italian Hard Bounce, Hard Techno and Industrial collective and label. Artists, releases, playlist and contacts."
-      : "No Rules Sound — collettivo ed etichetta Hard Bounce, Hard Techno e Industrial. Artisti, uscite, playlist e contatti.";
+      ? "No Rules Sound — Italian Hard Bounce and Hard Techno collective and label. Artists, releases, playlist and contacts."
+      : "No Rules Sound — collettivo ed etichetta Hard Bounce e Hard Techno. Artisti, uscite, playlist e contatti.";
     const metaDescription = document.querySelector('meta[name="description"]');
     const ogDescription = document.querySelector('meta[property="og:description"]');
     if(metaDescription) metaDescription.content = description;
@@ -606,6 +614,16 @@
       const card = e.target.closest && e.target.closest(".artist-card");
       if(card) card.classList.remove("is-tilting");
     }, true);
+  }
+
+  /* ---------- HERO: parallax leggero sul puntatore ---------- */
+  const heroEl = $(".hero");
+  if(heroEl && pointerFine && !reduceMotion){
+    heroEl.addEventListener("pointermove", (e) => {
+      const r = heroEl.getBoundingClientRect();
+      heroEl.style.setProperty("--mx", (((e.clientX - r.left) / r.width) - .5).toFixed(3));
+      heroEl.style.setProperty("--my", (((e.clientY - r.top) / r.height) - .5).toFixed(3));
+    }, {passive:true});
   }
 
 })();

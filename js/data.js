@@ -18,14 +18,14 @@ window.NRS_DATA = {
   label: {
     name: "NO RULES SOUND",
     shortName: "NRS",
-    tagline: "Italian Hard Bounce, Hard Techno & Industrial collective.",
-    taglineEn: "Italian Hard Bounce, Hard Techno & Industrial collective.",
+    tagline: "Italian Hard Bounce & Hard Techno collective.",
+    taglineEn: "Italian Hard Bounce & Hard Techno collective.",
     subtagline: "NO RULES, JUST SOUND.\nDESTROY THE SILENCE",
     subtaglineEn: "NO RULES, JUST SOUND.\nDESTROY THE SILENCE",
     location: "Italia",
     // Testo breve "chi siamo" mostrato nella sezione About
-    about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dai leggendari \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo Hard Bounce, Hard Techno, Industrial, Schranz e Neo Rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica.",
-    aboutEn: "No Rules Sound was born from the energy of car parks turned into dance floors: from legendary underground afterparties, where the only goals were to dance, connect and build a community, the collective grew into what it is today. Through NRS Records we release Hard Bounce, Hard Techno, Industrial, Schranz and Neo Rave, with one rule: no rules. We believe in a safe, inclusive and unfiltered space where anyone can express themselves freely through music."
+    about: "No Rules Sound nasce dall'energia dei parcheggi trasformati in dancefloor: dai leggendari \"after party\" underground, dove l'unico obiettivo era ballare, connettersi e costruire una comunità, il collettivo è cresciuto fino a diventare quello che è oggi. Sotto l'etichetta NRS Records pubblichiamo Hard Bounce, Hard Techno, Schranz e Neo Rave, con un'unica regola: nessuna regola. Crediamo in uno spazio sicuro, inclusivo e senza filtri, dove chiunque possa esprimersi liberamente attraverso la musica.",
+    aboutEn: "No Rules Sound was born from the energy of car parks turned into dance floors: from legendary underground afterparties, where the only goals were to dance, connect and build a community, the collective grew into what it is today. Through NRS Records we release Hard Bounce, Hard Techno, Schranz and Neo Rave, with one rule: no rules. We believe in a safe, inclusive and unfiltered space where anyone can express themselves freely through music."
   },
 
   /* ---------- CONTATTI ---------- */
@@ -79,12 +79,13 @@ window.NRS_DATA = {
      passata — appena il brano esce, sparisce da solo, senza dover disattivare
      nulla a mano. Per il prossimo pre-save, sostituite semplicemente questi
      3 valori con quelli della prossima uscita. */
-  presave: {
-    trackTitle: "ALBY — Bum Pau",
-    url: "https://hypeddit.com/albynrs/bumpau",
-    cover: "https://hypeddit-gates-prod.s3.amazonaws.com/ffxj8b_compressed_artwork.webp",
-    releaseDate: ""            // opzionale: dopo questa data il box viene nascosto automaticamente
-  },
+  // Lista pre-save: aggiungi una voce per ogni prossima uscita.
+  // Il sito mostra AUTOMATICAMENTE la più vicina non ancora uscita (releaseDate = "AAAA-MM-GG")
+  // e nasconde quelle passate. Senza releaseDate la voce resta sempre visibile.
+  presaves: [
+    // Nessun pre-save al momento: il box mostra "???". Esempio da aggiungere quando serve:
+    // { trackTitle: "ARTISTA — Titolo", url: "https://hypeddit.com/...", cover: "", releaseDate: "2026-12-05" },
+  ],
 
   // Embed di una playlist Spotify (aperta, pubblica). Per ottenerlo:
   // Spotify → apri la playlist → ... → Condividi → Incorpora playlist → copia il link "src" dell'iframe
@@ -116,7 +117,7 @@ window.NRS_DATA = {
     },
     {
       catalogNo: "02",
-      name: "Fae.نرس",
+      name: "Fae نرس",
       bookable: true,
       genre: "Oriental Hard Techno",
       bio: "Fondatore e punto di riferimento di No Rules Sound, Fae porta con sé un suono molto caratteristico plasmato dalle sue origini. I suoi set fondono Hard Techno e suoni mediorientali, creando un'esperienza esotica unica che evoca stati di coinvolgimento culturale attraverso vari generi musicali. In passato ha condiviso il palco con artisti come Azyr, Jazzy, Jowi, Øtta, Rikhter e Rebekah. Lasciati trasportare in un viaggio sonoro senza precedenti.",
@@ -140,11 +141,11 @@ window.NRS_DATA = {
     },
     {
       catalogNo: "04",
-      name: "TSK Phønič",
+      name: "TSK Phonic",
       bookable: true,
-      genre: "Hard Techno / Industrial / Raw",
-      bio: "TSK Phønič è un DJ e produttore hard techno/industrial di Padova. La sua musica combina atmosfere oscure e ritmi aggressivi, creando un contrasto emotivo tra dolcezza e rabbia. Ogni suo set è un viaggio unico, un portale in cui luce e oscurità si fondono in pura energia sonora, lasciando l'ascoltatore profondamente cambiato.",
-      bioEn: "TSK Phønič is a DJ and hard techno/industrial producer from Padua. His music combines dark atmospheres and aggressive rhythms, creating an emotional contrast between sweetness and anger. Each set is a unique journey, a portal where light and darkness merge into pure sound energy, leaving the listener profoundly changed.",
+      genre: "Hard Techno / Raw",
+      bio: "TSK Phonic è un DJ e produttore hard techno di Padova. La sua musica combina atmosfere oscure e ritmi aggressivi, creando un contrasto emotivo tra dolcezza e rabbia. Ogni suo set è un viaggio unico, un portale in cui luce e oscurità si fondono in pura energia sonora, lasciando l'ascoltatore profondamente cambiato.",
+      bioEn: "TSK Phonic is a DJ and hard techno producer from Padua. His music combines dark atmospheres and aggressive rhythms, creating an emotional contrast between sweetness and anger. Each set is a unique journey, a portal where light and darkness merge into pure sound energy, leaving the listener profoundly changed.",
       image: "https://i1.sndcdn.com/avatars-CzCHkcN17xmbutgl-4ycHMQ-t500x500.jpg",
       soundcloud: "https://soundcloud.com/tsk_phonic",
       instagram: "https://www.instagram.com/tsk_phonic/",
@@ -197,6 +198,24 @@ window.NRS_DATA = {
       soundcloud: "https://soundcloud.com/89koda",
       instagram: "https://www.instagram.com/89koda/",
       beatport: "https://www.beatport.com/artist/koda/98128"
+    },
+    {
+      catalogNo: "09", name: "Giorgio Cieri", bookable: false,
+      genre: "Hard Bounce / Hard Techno",
+      bio: "Producer italiano tra Hard Bounce e Hard Techno. Bassi potenti, ritmiche serrate, vocal ipnotici e campionamenti ironici: un suono diretto, creativo e costruito per il dancefloor.",
+      bioEn: "Italian producer working between Hard Bounce and Hard Techno. Powerful bass, tight rhythms, hypnotic vocals and playful samples shape a direct, creative sound built for the dancefloor.",
+      image: "assets/rebrand/giorgio-cieri.webp",
+      soundcloud: "https://soundcloud.com/giorgiocieri"
+    },
+    {
+      catalogNo: "10", name: "LEØ", bookable: false,
+      genre: "Bounce / Trance / Latin Bounce",
+      bio: "Producer italiano con base in Sicilia, fonde Trance, Bounce e Latin Bounce in un sound energico e dinamico. Tra le sue uscite: “RENEGADE” su NRS Records, “VAI NOVINHA” su Trance Italy e “JOTA” su Galactic Harmony Records.",
+      bioEn: "Sicily-based Italian producer blending Trance, Bounce and Latin Bounce into an energetic, dynamic sound. Releases include “RENEGADE” on NRS Records, “VAI NOVINHA” on Trance Italy and “JOTA” on Galactic Harmony Records.",
+      image: "assets/rebrand/leo.webp",
+      soundcloud: "https://soundcloud.com/kilyg",
+      instagram: "https://www.instagram.com/youcallmeleo/",
+      spotify: "https://open.spotify.com/artist/1tLUZ7f1KLhNeRWLOoH5VK"
     }
   ],
 

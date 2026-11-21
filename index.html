@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NO RULES SOUND — Hard Bounce / Hard Techno / Industrial Collective</title>
-<meta name="description" content="No Rules Sound — collettivo ed etichetta Hard Bounce / Hard Techno / Industrial. Roster artisti, uscite, playlist e contatti.">
+<title>NO RULES SOUND — Hard Bounce / Hard Techno Collective</title>
+<meta name="description" content="No Rules Sound — collettivo ed etichetta Hard Bounce / Hard Techno. Roster artisti, uscite, playlist e contatti.">
 
 <!-- Open Graph -->
 <meta property="og:title" content="NO RULES SOUND">
-<meta property="og:description" content="Italian Hard Bounce, Hard Techno &amp; Industrial collective.">
+<meta property="og:description" content="Italian Hard Bounce &amp; Hard Techno collective.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://norulesound.com/">
 <meta property="og:site_name" content="No Rules Sound">
 <meta property="og:locale" content="it_IT">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="No Rules Sound — Artists, releases & demo drop">
-<meta name="twitter:description" content="Hard Bounce, Hard Techno e Industrial. Scopri gli artisti NRS, ascolta le uscite e proponi la tua demo.">
+<meta name="twitter:description" content="Hard Bounce e Hard Techno. Scopri gli artisti NRS, ascolta le uscite e proponi la tua demo.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://norulesound.com/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","@id":"https://norulesound.com/#organization","name":"No Rules Sound","alternateName":"NRS","url":"https://norulesound.com/","description":"Collettivo musicale ed etichetta Hard Bounce, Hard Techno e Industrial.","sameAs":["https://soundcloud.com/no-rules-sound-label","https://www.instagram.com/norulesound/","https://open.spotify.com/artist/4ZYpceTd0FQmD7bLuEDhSO","https://www.tiktok.com/@no.rules.sound"]}
+{"@context":"https://schema.org","@type":"Organization","@id":"https://norulesound.com/#organization","name":"No Rules Sound","alternateName":"NRS","url":"https://norulesound.com/","description":"Collettivo musicale ed etichetta Hard Bounce e Hard Techno.","sameAs":["https://soundcloud.com/no-rules-sound-label","https://www.instagram.com/norulesound/","https://open.spotify.com/artist/4ZYpceTd0FQmD7bLuEDhSO","https://www.tiktok.com/@no.rules.sound"]}
 </script>
 
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -30,6 +30,7 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/rebrand.css">
 </head>
 <body>
 <div class="bg-blobs" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -37,7 +38,7 @@
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <a href="#top" class="nav__logo" aria-label="No Rules Sound — Home">
-    <span class="nav__logo-text">NRS</span>
+    <img src="assets/rebrand/logo-bone.webp" alt="NRS" width="120" height="58">
   </a>
   <button class="nav__toggle" id="navToggle" aria-label="Apri menu" data-i18n-aria="menuOpen" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -59,11 +60,14 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
-  <div class="hero__stripe hero__stripe--top" aria-hidden="true"></div>
-  <canvas id="heroCanvas" class="hero__canvas" aria-hidden="true"></canvas>
+  <div class="hero__bg" aria-hidden="true">
+    <img class="hero__layer hero__layer--red" src="assets/rebrand/thorns-red.webp" alt="" width="675" height="1200">
+    <img class="hero__layer hero__layer--chrome" src="assets/rebrand/thorns-chrome.webp" alt="" width="736" height="1308">
+  </div>
   <div class="hero__inner">
-    <p class="eyebrow mono" id="heroEyebrow">Italian Hard Bounce / Hard Techno / Industrial Collective</p>
-    <h1 class="hero__title" id="heroTitle" data-text="NO RULES SOUND">NO RULES SOUND</h1>
+    <p class="eyebrow mono" id="heroEyebrow">Italian Hard Bounce / Hard Techno Collective</p>
+    <h1 class="hero__title" id="heroTitle">NO RULES SOUND</h1>
+    <img class="hero__brand" src="assets/rebrand/logo-chrome.webp" alt="NRS" width="1000" height="470" fetchpriority="high">
     <p class="hero__sub" id="heroSub">NO RULES, JUST SOUND.
 DESTROY THE SILENCE</p>
     <div class="hero__cta">
@@ -71,12 +75,14 @@ DESTROY THE SILENCE</p>
       <a href="#uscite" class="btn btn--ghost" data-i18n="heroReleases">Ultime uscite</a>
     </div>
   </div>
-  <div class="hero__stripe hero__stripe--bottom" aria-hidden="true"></div>
+  <p class="hero__tag mono" aria-hidden="true">NRS / INDEPENDENT SOUND / FIRENZE</p>
 </section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker__track"><span>NO RULES, JUST SOUND <i></i> DESTROY THE SILENCE <i></i> HARD BOUNCE <i></i> HARD TECHNO <i></i> </span><span>NO RULES, JUST SOUND <i></i> DESTROY THE SILENCE <i></i> HARD BOUNCE <i></i> HARD TECHNO <i></i> </span></div></div>
 
 <!-- ============ ABOUT ============ -->
 <section class="about">
-  <p class="about__text" id="aboutText">No Rules Sound è un collettivo musicale e un’etichetta: Hard Bounce, Hard Techno e Industrial. Scopri il roster, ascolta le uscite NRS Records, richiedi un booking e proponi la tua musica con Demo Drop.</p>
+  <p class="about__text" id="aboutText">No Rules Sound è un collettivo musicale e un’etichetta: Hard Bounce e Hard Techno. Scopri il roster, ascolta le uscite NRS Records, richiedi un booking e proponi la tua musica con Demo Drop.</p>
   <div class="about__socials" id="socialRow"></div>
 </section>
 
@@ -138,7 +144,7 @@ DESTROY THE SILENCE</p>
     <h2 class="section__title" id="demoTitle">DEMO<br><span>DROP.</span></h2>
     <div class="demo-signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <p class="demo-drop__copy" data-i18n="demoCopy">Hai una traccia che non vuole stare in silenzio? Faccela ascoltare.</p>
-    <p class="mono demo-drop__genres">HARD BOUNCE / HARD TECHNO / INDUSTRIAL</p>
+    <p class="mono demo-drop__genres">HARD BOUNCE / HARD TECHNO</p>
     <p class="demo-drop__hint" data-i18n="demoHint">Link SoundCloud pubblico o privato. Per le tracce private, copia il link segreto completo da «Condividi».</p>
   </div>
   <form class="demo-form" id="demoForm" action="mailto:nrsbookingofficial@gmail.com" method="post">
@@ -172,8 +178,8 @@ DESTROY THE SILENCE</p>
 <footer class="footer" id="contatti">
   <div class="footer__top">
     <div>
-      <p class="footer__logo">NRS</p>
-      <p class="footer__tag" data-i18n="footerTag">No Rules Sound — Italian Hard Bounce, Hard Techno &amp; Industrial collective.</p>
+      <img class="footer__brand" src="assets/rebrand/logo-chrome.webp" alt="No Rules Sound" width="220" height="103" loading="lazy">
+      <p class="footer__tag" data-i18n="footerTag">No Rules Sound — Italian Hard Bounce &amp; Hard Techno collective.</p>
     </div>
     <div class="footer__contacts">
       <p class="mono footer__label" data-i18n="navContacts">Contatti</p>
