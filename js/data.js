@@ -122,7 +122,7 @@ window.NRS_DATA = {
       genre: "Oriental Hard Techno",
       bio: "Fondatore e punto di riferimento di No Rules Sound, Fae porta con sé un suono molto caratteristico plasmato dalle sue origini. I suoi set fondono Hard Techno e suoni mediorientali, creando un'esperienza esotica unica che evoca stati di coinvolgimento culturale attraverso vari generi musicali. In passato ha condiviso il palco con artisti come Azyr, Jazzy, Jowi, Øtta, Rikhter e Rebekah. Lasciati trasportare in un viaggio sonoro senza precedenti.",
       bioEn: "Founder and point of reference of No Rules Sound, Fae brings a very characteristic sound shaped by its origins. His sets intertwine Hard Techno with Middle Eastern sounds creating a one-of-a-kind exotic experience that evokes states of cultural involvement across various musical genres. In the past, he has shared the stage with the likes of Azyr, Jazzy, Jowi, Øtta, Rikhter, Rebekah. Let yourself be transported on an unprecedented sound journey.",
-      image: "https://i1.sndcdn.com/avatars-hzpHsfekEximbfhF-IiYsRA-t500x500.jpg",
+      image: "https://i1.sndcdn.com/avatars-sHXOihdBcXd7Kfb9-P9yIlA-t500x500.jpg",
       soundcloud: "https://soundcloud.com/faenrs",
       instagram: "https://www.instagram.com/fae.music_nrs/",
       beatport: "https://www.beatport.com/artist/fae-nrs/1286473"
@@ -146,7 +146,7 @@ window.NRS_DATA = {
       genre: "Hard Techno / Raw",
       bio: "TSK Phonic è un DJ e produttore hard techno di Padova. La sua musica combina atmosfere oscure e ritmi aggressivi, creando un contrasto emotivo tra dolcezza e rabbia. Ogni suo set è un viaggio unico, un portale in cui luce e oscurità si fondono in pura energia sonora, lasciando l'ascoltatore profondamente cambiato.",
       bioEn: "TSK Phonic is a DJ and hard techno producer from Padua. His music combines dark atmospheres and aggressive rhythms, creating an emotional contrast between sweetness and anger. Each set is a unique journey, a portal where light and darkness merge into pure sound energy, leaving the listener profoundly changed.",
-      image: "https://i1.sndcdn.com/avatars-CzCHkcN17xmbutgl-4ycHMQ-t500x500.jpg",
+      image: "https://i1.sndcdn.com/avatars-E6cAjguXMFpAzwQr-3t9FNg-t500x500.jpg",
       soundcloud: "https://soundcloud.com/tsk_phonic",
       instagram: "https://www.instagram.com/tsk_phonic/",
       beatport: "https://www.beatport.com/artist/tsk-phnic/1166367"
@@ -158,7 +158,7 @@ window.NRS_DATA = {
       genre: "Hard Techno",
       bio: "Tommaso Randelli, in arte RandeX, è un DJ e producer italiano del 2003. Attivo nella Hard Techno e Hard Bounce, ha iniziato la sua carriera da poco più di un anno, spinto da una passione coltivata fin da piccolo. Nei suoi set unisce aggressività e malinconia, alternando sonorità dure a momenti melodici influenzati da Hard Bounce ed elettronica. Mira a trasformare ogni esibizione in un viaggio intenso e personale.",
       bioEn: "RandeX, stage name of Tommaso Randelli (born in 2003), is an Italian DJ and producer active in the Hard Techno and Hard Bounce scene. He began his career just over a year ago, driven by a passion cultivated since childhood. His sets blend intensity and melancholy, alternating aggressive sounds with melodic moments influenced by Hard Bounce and electronic music. His goal is to turn every performance into an intense and personal journey.",
-      image: "https://i1.sndcdn.com/avatars-dh1AhdgQDifAFVV5-fWlryA-t500x500.jpg",
+      image: "https://i1.sndcdn.com/avatars-O50IEfAqzlcnHvoX-vE7zrg-t500x500.jpg",
       soundcloud: "https://soundcloud.com/randex_nrs",
       instagram: "https://www.instagram.com/randex.music_nrs/",
       beatport: "https://www.beatport.com/artist/randex-nrs/1282939"
@@ -194,7 +194,7 @@ window.NRS_DATA = {
       genre: "Hard Bounce",
       bio: "KØDA, DJ e producer argentino, porta nel roster NRS il lato più hard bounce e dancefloor del collettivo — energia diretta e groove pensato per far saltare la pista.",
       bioEn: "Argentinian DJ and producer KØDA brings the collective's most hard-bounce-driven, dance-floor-focused side to the NRS roster — direct energy and grooves made to move the crowd.",
-      image: "https://i1.sndcdn.com/avatars-TCzC1hAG1OI9pwez-sIGk4A-t500x500.jpg",
+      image: "https://i1.sndcdn.com/avatars-kMddze5RZ2nroRJG-TWf78g-t500x500.jpg",
       soundcloud: "https://soundcloud.com/89koda",
       instagram: "https://www.instagram.com/89koda/",
       beatport: "https://www.beatport.com/artist/koda/98128"
