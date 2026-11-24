@@ -43,6 +43,7 @@
       noPresave: "Nessuna uscita in pre-save al momento. Torna presto — o seguici sui social per essere avvisato.",
       subscribe: "Iscriviti alla newsletter",
       noSoundcloud: "Account SoundCloud non collegato: aggiungi il link in js/data.js → socials.soundcloud.",
+      readMore: "Leggi tutto", readLess: "Chiudi",
       noSpotify: "Playlist non ancora collegata: aggiungi il link in js/data.js → socials.spotify (o spotifyPlaylistEmbedUrl per una playlist specifica)."
     },
     en: {
@@ -59,6 +60,7 @@
       noPresave: "There are no releases available for pre-save right now. Check back soon — or follow us on social media for updates.",
       subscribe: "Join the newsletter",
       noSoundcloud: "SoundCloud is not connected yet: add the link in js/data.js → socials.soundcloud.",
+      readMore: "Read more", readLess: "Close",
       noSpotify: "The playlist is not connected yet: add the link in js/data.js → socials.spotify (or use spotifyPlaylistEmbedUrl for a specific playlist)."
     }
   };
@@ -124,10 +126,7 @@
     D.roster.forEach(artist => {
       const card = el("article", artist.bookable ? "artist-card" : "artist-card producer-card");
 
-      const top = el("div", "");
-      top.style.display = "flex";
-      top.style.justifyContent = "space-between";
-      top.style.alignItems = "flex-start";
+      const top = el("div", "artist-card__top");
 
       const monogram = el("div", "artist-card__mono", escapeHtml((artist.name || "?").trim().charAt(0)));
       if(artist.image){
@@ -170,6 +169,17 @@
       bio.dataset.it = artist.bio || "";
       bio.dataset.en = artist.bioEn || artist.bio || "";
       card.appendChild(bio);
+      const more = el("button", "artist-card__more mono");
+      more.type = "button";
+      more.setAttribute("aria-expanded", "false");
+      more.dataset.copyKey = "readMore";
+      more.addEventListener("click", () => {
+        const open = card.classList.toggle("is-open");
+        more.setAttribute("aria-expanded", String(open));
+        more.dataset.copyKey = open ? "readLess" : "readMore";
+        more.textContent = t(more.dataset.copyKey);
+      });
+      card.appendChild(more);
 
       const links = el("div", "artist-card__links");
       if(artist.soundcloud){
@@ -632,5 +642,19 @@
       heroEl.style.setProperty("--my", (((e.clientY - r.top) / r.height) - .5).toFixed(3));
     }, {passive:true});
   }
+
+  /* ---------- Mobile: mostra "Leggi tutto" solo se la bio è davvero troncata ---------- */
+  function fitMore(){
+    document.querySelectorAll(".artist-card").forEach(card => {
+      if(card.classList.contains("is-open")) return;
+      const bio = card.querySelector(".artist-card__bio");
+      if(bio) card.classList.toggle("no-more", bio.scrollHeight <= bio.clientHeight + 2);
+    });
+  }
+  fitMore();
+  window.addEventListener("resize", fitMore, {passive:true});
+  window.addEventListener("load", fitMore);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitMore);
+  document.querySelectorAll("[data-lang]").forEach(b => b.addEventListener("click", () => setTimeout(fitMore, 0)));
 
 })();
