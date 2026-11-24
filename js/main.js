@@ -163,6 +163,8 @@
         else nameEl.appendChild(document.createTextNode(ch));
       });
       nameEl.setAttribute("aria-label", artist.name);
+      if(/[ØČ]/.test(artist.name)) nameEl.classList.add("is-special");
+      if(artist.name.replace(/[^A-Za-zØČ]/g, "").length <= 6) nameEl.classList.add("is-short");
       card.appendChild(nameEl);
       card.appendChild(el("p", "artist-card__genre mono", escapeHtml(artist.genre)));
       const bio = el("p", "artist-card__bio", escapeHtml(artist.bio));
@@ -669,5 +671,22 @@
     window.addEventListener("scroll", () => { if(!ticking){ ticking = true; requestAnimationFrame(setProgress); } }, {passive:true});
     setProgress();
   }
+
+  /* ---------- Nomi artista: riduce il corpo finché ogni parola entra nella scheda (mai spezzati a metà) ---------- */
+  function fitNames(){
+    document.querySelectorAll(".artist-card__name").forEach(name => {
+      name.style.fontSize = "";
+      let size = parseFloat(getComputedStyle(name).fontSize);
+      let guard = 40;
+      while(name.scrollWidth > name.clientWidth + 1 && size > 14 && guard-- > 0){
+        size -= 0.75;
+        name.style.fontSize = size + "px";
+      }
+    });
+  }
+  fitNames();
+  window.addEventListener("resize", fitNames, {passive:true});
+  window.addEventListener("load", fitNames);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitNames);
 
 })();
