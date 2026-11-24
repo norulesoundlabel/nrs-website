@@ -220,3 +220,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @media(min-width:701px){.artist-card__name.is-short{font-size:clamp(2.1rem,2.6vw,2.7rem)}}
 .artist-card__name{min-width:0;overflow-wrap:normal;word-break:normal}
 @media(max-width:700px){.artist-card__name,.producer-card .artist-card__name{white-space:normal}}
+
+/* Safari: il testo trasparente di un figlio inline-block non riceve il background-clip del genitore → ridichiaro il cromo sul figlio */
+.gx{background:var(--chrome);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.artist-card__name .ar{font-family:'Noto Naskh Arabic','Geeza Pro','Segoe UI',system-ui,sans-serif;font-size:.78em;letter-spacing:0;word-spacing:0;vertical-align:-.04em;background:var(--chrome);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.artist-card__name.is-oneline{white-space:nowrap!important}
+/* massima compatibilità Safari: lettera base della Ø/Č in tinta unita chiara (nessuna dipendenza da background-clip su inline-block) */
+.gx{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#f0f0f3;-webkit-text-fill-color:#f0f0f3;text-shadow:0 1px 0 rgba(0,0,0,.7)}

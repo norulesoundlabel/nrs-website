@@ -158,10 +158,18 @@
       }
       /* Chopsic non ha Ø e Č: le disegniamo con la lettera base + segno in CSS, così restano nello stile del font. */
       const nameEl = el("h3", "artist-card__name");
+      let arSpan = null;
       Array.from(artist.name).forEach(ch => {
+        if(/[\u0600-\u06FF]/.test(ch)){
+          if(!arSpan){ arSpan = el("span", "ar"); nameEl.appendChild(arSpan); }
+          arSpan.appendChild(document.createTextNode(ch));
+          return;
+        }
+        arSpan = null;
         if(ch === "Ø" || ch === "Č"){ nameEl.appendChild(el("span", "gx " + (ch === "Ø" ? "gx--slash" : "gx--caron"), ch === "Ø" ? "O" : "C")); }
         else nameEl.appendChild(document.createTextNode(ch));
       });
+      if(/[\u0600-\u06FF]/.test(artist.name)) nameEl.classList.add("is-oneline");
       nameEl.setAttribute("aria-label", artist.name);
       if(/[ØČ]/.test(artist.name)) nameEl.classList.add("is-special");
       if(artist.name.replace(/[^A-Za-zØČ]/g, "").length <= 6) nameEl.classList.add("is-short");
