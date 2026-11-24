@@ -157,7 +157,14 @@
         status.dataset.copyKey = "bookable";
         card.appendChild(status);
       }
-      card.appendChild(el("h3", "artist-card__name", escapeHtml(artist.name)));
+      /* Chopsic non ha Ø e Č: le disegniamo con la lettera base + segno in CSS, così restano nello stile del font. */
+      const nameEl = el("h3", "artist-card__name");
+      Array.from(artist.name).forEach(ch => {
+        if(ch === "Ø" || ch === "Č"){ nameEl.appendChild(el("span", "gx " + (ch === "Ø" ? "gx--slash" : "gx--caron"), ch === "Ø" ? "O" : "C")); }
+        else nameEl.appendChild(document.createTextNode(ch));
+      });
+      nameEl.setAttribute("aria-label", artist.name);
+      card.appendChild(nameEl);
       card.appendChild(el("p", "artist-card__genre mono", escapeHtml(artist.genre)));
       const bio = el("p", "artist-card__bio", escapeHtml(artist.bio));
       bio.dataset.it = artist.bio || "";
