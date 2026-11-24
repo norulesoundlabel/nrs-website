@@ -227,3 +227,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .artist-card__name.is-oneline{white-space:nowrap!important}
 /* massima compatibilità Safari: lettera base della Ø/Č in tinta unita chiara (nessuna dipendenza da background-clip su inline-block) */
 .gx{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#f0f0f3;-webkit-text-fill-color:#f0f0f3;text-shadow:0 1px 0 rgba(0,0,0,.7)}
+.artist-card__name.is-special,.artist-card__name.is-oneline{white-space:nowrap!important}
+.artist-card__name .ar{margin-left:.1em}
+
+/* Barra della Ø: taglio netto stile Chopsic (estremità angolari, doppio strato: gap scuro + lama chiara) */
+.gx--slash::before,.gx--slash::after{content:"";position:absolute;left:-12%;right:-12%;transform:rotate(-42deg);transform-origin:50% 50%;box-shadow:none;border-radius:0}
+.gx--slash::before{top:41%;height:.26em;background:#141414;clip-path:polygon(0 38%,100% 0,100% 62%,0 100%)}
+.gx--slash::after{top:45.5%;height:.15em;background:linear-gradient(180deg,#fff 0%,#fff 45%,#b8b8c0 55%,#f2f2f5 100%);clip-path:polygon(0 30%,100% 0,100% 70%,0 100%);box-shadow:none}
