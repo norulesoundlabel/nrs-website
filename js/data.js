@@ -206,6 +206,7 @@ window.NRS_DATA = {
       bioEn: "Italian producer working between Hard Bounce and Hard Techno. Powerful bass, tight rhythms, hypnotic vocals and playful samples shape a direct, creative sound built for the dancefloor.",
       image: "assets/rebrand/giorgio-cieri.webp",
       soundcloud: "https://soundcloud.com/giorgiocieri",
+      instagram: "https://www.instagram.com/giorgio_cieri/",
       beatport: "https://www.beatport.com/it/artist/giorgio-cieri/1486763"
     },
     {
@@ -216,8 +217,7 @@ window.NRS_DATA = {
       image: "assets/rebrand/leo.webp",
       soundcloud: "https://soundcloud.com/kilyg",
       instagram: "https://www.instagram.com/youcallmeleo/",
-      beatport: "https://www.beatport.com/it/artist/le-it/1261291",
-      spotify: "https://open.spotify.com/artist/1tLUZ7f1KLhNeRWLOoH5VK"
+      beatport: "https://www.beatport.com/it/artist/le-it/1261291"
     }
   ],
 
