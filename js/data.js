@@ -117,7 +117,7 @@ window.NRS_DATA = {
     },
     {
       catalogNo: "02",
-      name: "Fae نرس",
+      name: "FAE. نرس",
       bookable: true,
       genre: "Oriental Hard Techno",
       bio: "Fondatore e punto di riferimento di No Rules Sound, Fae porta con sé un suono molto caratteristico plasmato dalle sue origini. I suoi set fondono Hard Techno e suoni mediorientali, creando un'esperienza esotica unica che evoca stati di coinvolgimento culturale attraverso vari generi musicali. In passato ha condiviso il palco con artisti come Azyr, Jazzy, Jowi, Øtta, Rikhter e Rebekah. Lasciati trasportare in un viaggio sonoro senza precedenti.",
@@ -141,7 +141,7 @@ window.NRS_DATA = {
     },
     {
       catalogNo: "04",
-      name: "TSK Phonic",
+      name: "TSK PHØNIČ",
       bookable: true,
       genre: "Hard Techno / Raw",
       bio: "TSK Phonic è un DJ e produttore hard techno di Padova. La sua musica combina atmosfere oscure e ritmi aggressivi, creando un contrasto emotivo tra dolcezza e rabbia. Ogni suo set è un viaggio unico, un portale in cui luce e oscurità si fondono in pura energia sonora, lasciando l'ascoltatore profondamente cambiato.",
