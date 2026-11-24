@@ -167,3 +167,42 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .section{padding-block:3.2rem}.demo-form{padding:1.3rem 1.1rem}.demo-form .btn{min-height:52px;width:100%}
   .demo-form input,.demo-form textarea{min-height:48px}.footer__contacts a{display:inline-block;padding:.35rem 0}
   .newsletter{padding-block:3.5rem}}
+
+/* ====== LEGGIBILITÀ: cromo verticale ad alto contrasto, spaziatura e minimi di corpo ====== */
+:root{--chrome:linear-gradient(180deg,#ffffff 0%,#f1f1f4 42%,#a9a9b2 52%,#f6f6f8 62%,#ffffff 100%)}
+.section__title,.artist-card__name{background:var(--chrome);background-size:100% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  letter-spacing:.05em;word-spacing:.22em;animation:none!important;filter:drop-shadow(0 1px 0 rgba(0,0,0,.65)) drop-shadow(0 0 14px rgba(255,255,255,.06))}
+.section__title{line-height:1.02}
+.gx{-webkit-text-fill-color:transparent}
+.hero__sub{font-size:clamp(1.05rem,2vw,1.4rem);letter-spacing:.12em;word-spacing:.15em;line-height:1.55}
+.hero__sub::first-line{color:#ff2b35;text-shadow:0 0 18px rgba(224,16,26,.55)}
+.ticker span{letter-spacing:.14em;word-spacing:.2em}
+.eyebrow{font-size:.78rem;letter-spacing:.2em}
+.roster-group__title{font-size:.86rem;letter-spacing:.2em}
+.artist-card__genre{font-size:.76rem;letter-spacing:.14em}
+.artist-card__links a{font-size:.74rem}
+.btn{font-size:.86rem;letter-spacing:.14em}
+
+/* progress bar scroll (valore impostato da main.js) */
+.nav::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:calc(var(--p,0)*100%);background:linear-gradient(90deg,var(--red),#ff6a70);box-shadow:0 0 10px rgba(224,16,26,.8);transition:width .1s linear}
+
+@media(max-width:700px){
+  .section__title{font-size:clamp(2.3rem,12.5vw,3.4rem);line-height:1.05;letter-spacing:.04em}
+  .section__title--sm{font-size:clamp(1.9rem,9.6vw,2.6rem)}
+  .eyebrow{font-size:.78rem;letter-spacing:.16em;line-height:1.6}
+  .section .eyebrow:first-of-type::before{font-size:1.5em}
+  .hero .eyebrow{font-size:.72rem;max-width:34ch}
+  .hero__sub{font-size:1.12rem;letter-spacing:.1em}
+  .hero__tag{font-size:.62rem}
+  .roster-group__title{font-size:.9rem}
+  .artist-card__name,.producer-card .artist-card__name{font-size:clamp(1.3rem,6.6vw,1.9rem);letter-spacing:.04em;word-spacing:.18em;line-height:1.1}
+  .artist-card__genre,.producer-card .artist-card__genre{font-size:.74rem;line-height:1.55}
+  .artist-card__more{font-size:.8rem}
+  .artist-card__links a,.producer-card .artist-card__links a{font-size:.74rem;letter-spacing:.1em}
+  .btn{font-size:.9rem}
+  .footer__label{font-size:.78rem}
+  .demo-form label span,.demo-form__heading{font-size:.82rem}
+  .demo-drop .section__title{font-size:clamp(3rem,17vw,4.2rem)}
+  .about__text{font-size:1.05rem;line-height:1.75}
+}
+@media(prefers-reduced-motion:reduce){.nav::after{transition:none}}

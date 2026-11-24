@@ -657,4 +657,17 @@
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitMore);
   document.querySelectorAll("[data-lang]").forEach(b => b.addEventListener("click", () => setTimeout(fitMore, 0)));
 
+  /* ---------- Barra di avanzamento scroll ---------- */
+  const navBar = $("#nav");
+  if(navBar){
+    let ticking = false;
+    const setProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      navBar.style.setProperty("--p", max > 0 ? Math.min(1, window.scrollY / max).toFixed(4) : 0);
+      ticking = false;
+    };
+    window.addEventListener("scroll", () => { if(!ticking){ ticking = true; requestAnimationFrame(setProgress); } }, {passive:true});
+    setProgress();
+  }
+
 })();
