@@ -46,6 +46,7 @@ window.NRS_DATA = {
     spotify: "https://open.spotify.com/artist/4ZYpceTd0FQmD7bLuEDhSO",
     beatport: "https://www.beatport.com/label/nrs-records/127009",
     tiktok: "https://www.tiktok.com/@no.rules.sound",
+    facebook: "https://www.facebook.com/people/NO-RULES-SOUND/61595334601881/",
     youtube: "",
     bandcamp: ""
   },

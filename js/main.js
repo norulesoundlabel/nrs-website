@@ -104,6 +104,7 @@
       ["spotify", "Spotify"],
       ["beatport", "Beatport"],
       ["tiktok", "TikTok"],
+      ["facebook", "Facebook"],
       ["youtube", "YouTube"],
       ["bandcamp", "Bandcamp"]
     ];
