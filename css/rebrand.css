@@ -234,3 +234,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .gx--slash::before,.gx--slash::after{content:"";position:absolute;left:-12%;right:-12%;transform:rotate(-42deg);transform-origin:50% 50%;box-shadow:none;border-radius:0}
 .gx--slash::before{top:41%;height:.26em;background:#141414;clip-path:polygon(0 38%,100% 0,100% 62%,0 100%)}
 .gx--slash::after{top:45.5%;height:.15em;background:linear-gradient(180deg,#fff 0%,#fff 45%,#b8b8c0 55%,#f2f2f5 100%);clip-path:polygon(0 30%,100% 0,100% 70%,0 100%);box-shadow:none}
+
+/* ====== Uniformità: nomi stessa dimensione, piattaforme tutte uguali ====== */
+.artist-card__name.is-short,.producer-card .artist-card__name.is-short{letter-spacing:.08em}
+.artist-card__links,.producer-card .artist-card__links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+.artist-card__links a,.producer-card .artist-card__links a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 .4rem;border:1px solid #444;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;text-align:center;transition:border-color .2s,background .2s,color .2s}
+.artist-card__links a:hover{border-color:var(--red);background:rgba(224,16,26,.12);color:#fff}
+.about__socials,#footerSocialRow{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:.6rem;max-width:760px}
+.newsletter .about__socials{margin-inline:auto}
+.social-pill{display:flex;align-items:center;justify-content:center;min-height:44px;width:100%;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:700px){.about__socials,#footerSocialRow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .artist-card__links,.producer-card .artist-card__links{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:701px){.artist-card__name,.artist-card__name.is-short{font-size:2.3rem;letter-spacing:.07em}.producer-card .artist-card__name,.producer-card .artist-card__name.is-short{font-size:1.7rem}}
+.producer-card .artist-card__links a{font-size:.6rem;letter-spacing:.03em;padding:0 .2rem}
+@media(min-width:701px){.producer-card .artist-card__name{min-height:2.3em;display:flex;align-items:flex-end;flex-wrap:wrap}}
+@media(min-width:701px) and (max-width:1000px){.producer-card .artist-card__links a{font-size:.62rem}}
+@media(min-width:701px){.producer-card .artist-card__name{height:2.5em;min-height:0;line-height:1.1;margin-top:1rem;align-content:flex-end}}
+@media(min-width:701px){.producer-card .artist-card__mono,.producer-card .artist-card__photo-frame{width:64px;height:72px;flex-shrink:0}.producer-card .artist-card__mono{display:flex;align-items:center;justify-content:center}}

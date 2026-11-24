@@ -682,14 +682,28 @@
 
   /* ---------- Nomi artista: riduce il corpo finché ogni parola entra nella scheda (mai spezzati a metà) ---------- */
   function fitNames(){
-    document.querySelectorAll(".artist-card__name").forEach(name => {
-      name.style.fontSize = "";
+    const names = Array.from(document.querySelectorAll(".artist-card__name"));
+    names.forEach(n => { n.style.fontSize = ""; n.dataset.fit = ""; });
+    names.forEach(name => {
       let size = parseFloat(getComputedStyle(name).fontSize);
-      let guard = 40;
-      while(name.scrollWidth > name.clientWidth + 1 && size > 14 && guard-- > 0){
-        size -= 0.75;
+      let guard = 60;
+      while(name.scrollWidth > name.clientWidth + 1 && size > 12 && guard-- > 0){
+        size -= 0.5;
         name.style.fontSize = size + "px";
       }
+      name.dataset.fit = String(size);
+    });
+    /* Uniforma: stesso corpo per tutte le schede (su mobile globale; su desktop per griglia) */
+    const mobile = window.matchMedia("(max-width: 700px)").matches;
+    const groups = new Map();
+    names.forEach(n => {
+      const key = mobile ? "all" : n.closest(".roster-grid");
+      if(!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(n);
+    });
+    groups.forEach(list => {
+      const min = Math.min(...list.map(n => parseFloat(n.dataset.fit)));
+      list.forEach(n => { n.style.fontSize = min + "px"; });
     });
   }
   fitNames();
