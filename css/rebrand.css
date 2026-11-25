@@ -251,3 +251,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @media(min-width:701px) and (max-width:1000px){.producer-card .artist-card__links a{font-size:.62rem}}
 @media(min-width:701px){.producer-card .artist-card__name{height:2.5em;min-height:0;line-height:1.1;margin-top:1rem;align-content:flex-end}}
 @media(min-width:701px){.producer-card .artist-card__mono,.producer-card .artist-card__photo-frame{width:64px;height:72px;flex-shrink:0}.producer-card .artist-card__mono{display:flex;align-items:center;justify-content:center}}
+
+/* ====== Allineamento bottoni ====== */
+@media(min-width:1000px){.about__socials{grid-template-columns:repeat(var(--n,6),minmax(0,1fr));max-width:none}}
+@media(min-width:701px) and (max-width:999px){.about__socials{grid-template-columns:repeat(3,minmax(0,1fr));max-width:none}}
+#footerSocialRow{grid-template-columns:repeat(2,minmax(0,1fr))}
+#footerSocialRow>:last-child:nth-child(odd),.about__socials>:last-child:nth-child(odd){grid-column:auto}
+@media(max-width:700px){.about__socials>:last-child:nth-child(odd){grid-column:1/-1}#footerSocialRow>:last-child:nth-child(odd){grid-column:1/-1}}
+.hero__cta{display:grid;grid-template-columns:repeat(2,minmax(210px,1fr));gap:.9rem;max-width:520px;width:100%}
+.hero__cta .btn{width:100%;min-height:54px}
+.roster__cta .btn,.presave-box .btn,.demo-form .btn,#newsletterFormWrap .btn{min-height:54px}
+@media(max-width:700px){.hero__cta{grid-template-columns:1fr;max-width:none}
+  .roster__cta{display:grid;gap:1rem}.roster__cta .btn{width:100%}
+  #newsletterFormWrap .btn,.presave-box .btn{width:100%}}

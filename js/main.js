@@ -119,6 +119,7 @@
   }
   buildSocialRow($("#socialRow"));
   buildSocialRow($("#footerSocialRow"));
+  document.querySelectorAll("#socialRow, #footerSocialRow").forEach(r => r.style.setProperty("--n", r.children.length));
 
   /* ---------- ROSTER ---------- */
   const artistsGrid = $("#artistsGrid");
