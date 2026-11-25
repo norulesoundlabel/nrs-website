@@ -264,3 +264,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @media(max-width:700px){.hero__cta{grid-template-columns:1fr;max-width:none}
   .roster__cta{display:grid;gap:1rem}.roster__cta .btn{width:100%}
   #newsletterFormWrap .btn,.presave-box .btn{width:100%}}
+
+/* Titoli: nessuna rottura a metà parola; NEWSLETTER sempre su una riga */
+.section__title{overflow-wrap:normal!important;word-break:normal}
+.newsletter .section__title{white-space:nowrap;text-align:center}
+.newsletter .section__title{font-size:clamp(2.2rem,11.5vw,4.4rem)!important}
+#newsletterFormWrap .btn{white-space:nowrap;letter-spacing:.08em;font-size:clamp(.72rem,3.5vw,.9rem);padding-inline:1rem}

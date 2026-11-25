@@ -713,4 +713,21 @@
   window.addEventListener("load", fitNames);
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitNames);
 
+  /* ---------- Titoli di sezione: mai spezzati a metà parola (NEWSLETTER sempre su una riga) ---------- */
+  function fitTitles(){
+    document.querySelectorAll(".section__title").forEach(title => {
+      title.style.removeProperty("font-size");
+      let size = parseFloat(getComputedStyle(title).fontSize);
+      let guard = 120;
+      while(title.scrollWidth > title.clientWidth + 1 && size > 18 && guard-- > 0){
+        size -= 0.5;
+        title.style.setProperty("font-size", size + "px", "important");
+      }
+    });
+  }
+  fitTitles();
+  window.addEventListener("resize", fitTitles, {passive:true});
+  window.addEventListener("load", fitTitles);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitles);
+
 })();
